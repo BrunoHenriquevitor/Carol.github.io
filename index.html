@@ -5,121 +5,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Timeline</title>
 
+<!-- Fonte -->
+<link href="https://fonts.googleapis.com/css?family=Cardo|Pathway+Gothic+One" rel="stylesheet">
+
 <style>
 body{
   margin:0;
-  font-family: Arial;
-  background:#111;
+  font-family:'Cardo', serif;
+  background:#000;
   color:white;
 }
 
 /* CONTAINER */
-.timeline{
-  max-width:800px;
-  margin:50px auto;
+.timeline-container{
+  width:100%;
+  min-height:100vh;
+  background-size:cover;
+  background-position:center;
+  transition:1s;
   position:relative;
 }
 
-/* LINHA */
-.timeline::after{
+/* overlay escuro */
+.timeline-container::before{
   content:'';
   position:absolute;
-  width:4px;
-  background:#f1c40f;
-  top:0;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
 }
 
-/* CARD */
-.timeline-item{
-  padding:20px;
+/* HEADER */
+.timeline-header{
+  text-align:center;
+  padding:60px 20px;
   position:relative;
-  width:50%;
+  z-index:2;
 }
 
-.timeline-item.left{
-  left:0;
+.timeline-header__title{
+  font-family:'Pathway Gothic One', sans-serif;
+  font-size:40px;
 }
 
-.timeline-item.right{
-  left:50%;
+.timeline-header__subtitle{
+  opacity:0.7;
 }
 
-/* CONTEÚDO */
-.timeline-content{
-  background:#222;
-  padding:20px;
-  border-radius:10px;
-  transition:0.4s;
+/* TIMELINE */
+.timeline{
+  max-width:700px;
+  margin:auto;
+  padding:50px 0;
+  position:relative;
+  z-index:2;
+}
+
+/* ITEM */
+.timeline-item{
+  margin-bottom:80px;
+  opacity:0.3;
+  transition:0.5s;
+}
+
+.timeline-item--active{
+  opacity:1;
+  transform:scale(1.02);
+}
+
+/* TEXTO */
+.timeline__content-title{
+  font-size:40px;
+  margin:10px 0;
+}
+
+.timeline__content-desc{
+  opacity:0.7;
 }
 
 /* IMAGEM */
-.timeline-content img{
+.timeline__img{
   width:100%;
   border-radius:10px;
 }
 
-/* TÍTULO */
-.timeline-content h2{
-  margin:10px 0;
-}
-
-/* TEXTO */
-.timeline-content p{
-  opacity:0.8;
-}
-
-/* BOLINHA */
-.timeline-item::after{
-  content:'';
-  position:absolute;
-  width:15px;
-  height:15px;
-  background:#f1c40f;
-  border-radius:50%;
-  top:30px;
-}
-
-.timeline-item.left::after{
-  right:-8px;
-}
-
-.timeline-item.right::after{
-  left:-8px;
-}
-
-/* HOVER */
-.timeline-content:hover{
-  transform:scale(1.03);
-}
-
-/* ANIMAÇÃO */
-.timeline-item{
-  opacity:0;
-  transform:translateY(50px);
-  transition:0.6s;
-}
-
-.timeline-item.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
 /* RESPONSIVO */
 @media(max-width:768px){
-  .timeline::after{
-    left:20px;
-  }
-
-  .timeline-item{
-    width:100%;
-    padding-left:50px;
-  }
-
-  .timeline-item.right{
-    left:0;
+  .timeline-header__title{
+    font-size:28px;
   }
 }
 </style>
@@ -127,61 +100,85 @@ body{
 
 <body>
 
-<div class="timeline">
+<div class="timeline-container" id="timeline-1">
 
-  <!-- CARD 1 -->
-  <div class="timeline-item left">
-    <div class="timeline-content">
-      <img src="foto1.jpg">
-      <h2>2000</h2>
-      <p>Um momento especial que marcou o início de tudo.</p>
-    </div>
+  <div class="timeline-header">
+    <h2 class="timeline-header__title">Para minha irmã 🌻</h2>
+    <h3 class="timeline-header__subtitle">Nossa história</h3>
   </div>
 
-  <!-- CARD 2 -->
-  <div class="timeline-item right">
-    <div class="timeline-content">
-      <img src="foto2.jpg">
-      <h2>2005</h2>
-      <p>Fase cheia de descobertas e aprendizados.</p>
-    </div>
-  </div>
+  <div class="timeline">
 
-  <!-- CARD 3 -->
-  <div class="timeline-item left">
-    <div class="timeline-content">
-      <img src="foto3.jpg">
-      <h2>2015</h2>
-      <p>Momentos inesquecíveis ao lado de quem importa.</p>
+    <!-- CARD 1 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <img class="timeline__img" src="foto1.jpg">
+        <h2 class="timeline__content-title">Infância</h2>
+        <p class="timeline__content-desc">
+          Desde pequenos sempre juntos.
+        </p>
+      </div>
     </div>
-  </div>
 
-  <!-- CARD 4 -->
-  <div class="timeline-item right">
-    <div class="timeline-content">
-      <img src="foto4.jpg">
-      <h2>Hoje</h2>
-      <p>E a história continua sendo escrita...</p>
+    <!-- CARD 2 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <img class="timeline__img" src="foto2.jpg">
+        <h2 class="timeline__content-title">Momentos</h2>
+        <p class="timeline__content-desc">
+          Muitas risadas e memórias.
+        </p>
+      </div>
     </div>
-  </div>
 
+    <!-- CARD 3 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <img class="timeline__img" src="foto3.jpg">
+        <h2 class="timeline__content-title">Crescimento</h2>
+        <p class="timeline__content-desc">
+          Sempre evoluindo juntos.
+        </p>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <img class="timeline__img" src="foto4.jpg">
+        <h2 class="timeline__content-title">Hoje</h2>
+        <p class="timeline__content-desc">
+          E ainda temos muito pela frente.
+        </p>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <script>
-const items = document.querySelectorAll('.timeline-item');
+const timeline = document.getElementById("timeline-1");
+const items = document.querySelectorAll(".timeline-item");
 
-function showItems(){
-  const trigger = window.innerHeight * 0.85;
+items[0].classList.add("timeline-item--active");
+timeline.style.backgroundImage = "url(" + items[0].querySelector("img").src + ")";
 
-  items.forEach(item=>{
-    if(item.getBoundingClientRect().top < trigger){
-      item.classList.add('show');
+window.addEventListener("scroll", () => {
+  const pos = window.scrollY;
+
+  items.forEach((item, i) => {
+    const min = item.offsetTop;
+    const max = min + item.offsetHeight;
+
+    if (pos >= min - 200 && pos < max) {
+      items.forEach(el => el.classList.remove("timeline-item--active"));
+      item.classList.add("timeline-item--active");
+
+      timeline.style.backgroundImage =
+        "url(" + item.querySelector("img").src + ")";
     }
   });
-}
-
-window.addEventListener('scroll', showItems);
-showItems();
+});
 </script>
 
 </body>
