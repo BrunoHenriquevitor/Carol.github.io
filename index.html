@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz Aniversário 🎉</title>
-
-<style>
+<title>Feliz Aniversário 🎉</title><style>
 body {
   margin: 0;
-  background: #1a1a1a;
   font-family: Arial, sans-serif;
+  background: #1a1a1a;
 }
 
 /* INTRO */
@@ -34,20 +31,21 @@ body {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* FUNDO AMARELO */
+/* FUNDO COM DEGRADÊ */
 .banner {
-  background: linear-gradient(180deg, #ffd54f, #fbc02d);
-  padding: 40px 10px;
+  background: linear-gradient(180deg, #ffe082 0%, #fbc02d 50%, #f57f17 100%);
+  padding: 10px 5px; /* margem bem menor */
   display: flex;
   justify-content: center;
 }
 
 /* CARD */
 .card {
-  width: 320px;
+  width: 95%; /* ocupa quase tudo */
+  max-width: 400px;
   background: #ffffff;
-  padding: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  padding: 5px; /* borda mais fina */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 /* IMAGEM */
@@ -56,30 +54,13 @@ body {
   display: block;
 }
 
-/* RESPONSIVO */
-@media (min-width: 768px) {
-  .card {
-    width: 400px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- CONTAGEM -->
-<div id="intro">
+</style></head><body><!-- CONTAGEM --><div id="intro">
   <div id="count">1</div>
-</div>
-
-<!-- HEADER -->
-<div class="banner">
+</div><!-- HEADER --><div class="banner">
   <div class="card">
     <img src="file_00000000ecc4720ea5cb334a68dc5c84.png">
   </div>
-</div>
-
-<script>
+</div><script>
 let count = 1;
 const countElement = document.getElementById('count');
 const intro = document.getElementById('intro');
@@ -95,7 +76,5 @@ let interval = setInterval(() => {
   }
 
 }, 1000);
-</script>
-
-</body>
+</script></body>
 </html>
