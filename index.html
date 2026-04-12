@@ -28,7 +28,7 @@ body {
   z-index: 9999;
 }
 
-/* HEADER (SEM ALTERAÇÃO) */
+/* HEADER */
 header {
   background: linear-gradient(180deg,#ffe082,#fbc02d,#f57f17);
   padding: 20px;
@@ -44,6 +44,7 @@ header {
 
 .card img {
   width: 100%;
+  display: block;
 }
 
 /* BLOCO */
@@ -68,7 +69,7 @@ button {
   transition: 1s;
 }
 
-/* FUNDO COM IMAGEM */
+/* FUNDO CORRIGIDO */
 .timeline-container {
   position: relative;
   padding: 150px 0 200px 0;
@@ -78,7 +79,13 @@ button {
 
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+}
+
+/* 👇 Só aplica efeito parallax no PC */
+@media (min-width: 768px) {
+  .timeline-container {
+    background-attachment: fixed;
+  }
 }
 
 .timeline {
@@ -88,7 +95,6 @@ button {
   flex-direction: column;
 }
 
-/* ITEM */
 .timeline-item {
   padding: 100px 0;
   opacity: 0.3;
@@ -103,7 +109,6 @@ button {
   filter: blur(0);
 }
 
-/* CONTEÚDO */
 .timeline__content {
   text-align: center;
   color: #fff;
@@ -134,7 +139,7 @@ button {
 <!-- HEADER -->
 <header>
   <div class="card">
-    <img src="file_00000000ecc4720ea5cb334a68dc5c84.png">
+    <img src="arquivo_000000005d24720eb3e4f56b88c9001d.png">
   </div>
 </header>
 
@@ -160,24 +165,8 @@ button {
     <div class="timeline-item">
       <div class="timeline__content">
         <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Primeiros momentos</h2>
-        <p class="timeline__content-desc">Cada detalhe já era especial</p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Risadas</h2>
-        <p class="timeline__content-desc">As melhores lembranças são com você 😂💛</p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Momentos únicos</h2>
-        <p class="timeline__content-desc">Momentos que ficaram pra sempre</p>
+        <h2 class="timeline__content-title">Momentos</h2>
+        <p class="timeline__content-desc">Momentos especiais juntos</p>
       </div>
     </div>
 
@@ -185,7 +174,7 @@ button {
       <div class="timeline__content">
         <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
         <h2 class="timeline__content-title">Hoje</h2>
-        <p class="timeline__content-desc">E hoje estou aqui te desejando o melhor 💛</p>
+        <p class="timeline__content-desc">E hoje estamos aqui 💛</p>
       </div>
     </div>
 
@@ -230,8 +219,7 @@ function mostrar(){
     var selectors = {
       id: $(this),
       item: $(this).find(".timeline-item"),
-      activeClass: "timeline-item--active",
-      img: ".timeline__img"
+      activeClass: "timeline-item--active"
     };
 
     selectors.item.eq(0).addClass(selectors.activeClass);
