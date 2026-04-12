@@ -28,78 +28,29 @@ body {
   z-index: 9999;
 }
 
-/* ================= BANNER ================= */
-.banner {
-  position: relative;
-  height: 60vh;
-  overflow: hidden;
+/* HEADER (NÃO MEXIDO) */
+header {
+  background: linear-gradient(180deg,#ffe082,#fbc02d,#f57f17);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.banner img {
+.card {
+  max-width: 400px;
+  background: #fff;
+  padding: 5px;
+}
+
+.card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(255,215,0,0.2), rgba(255,180,0,0.5));
-}
-
-.top-left {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: #ffd54f;
-}
-
-.top-right {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: #ffd54f;
-}
-
-.conteudo {
-  position: absolute;
-  top: 50%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #ffd54f;
-}
-
-.conteudo h1 {
-  font-family: cursive;
-  font-size: 40px;
-}
-
-.papel {
-  background: #f5f5dc;
-  padding: 10px 20px;
-  transform: rotate(-5deg);
-  display: inline-block;
-}
-
-.papel h2 {
-  color: #d4af37;
-  font-family: cursive;
-}
-
-.mensagem {
-  background: #d4af37;
-  color: #fff;
-  padding: 8px;
-  margin-top: 10px;
-}
-
-/* ================= BLOCO ================= */
+/* BLOCO */
 .pre {
   text-align: center;
   padding: 50px;
-  background: linear-gradient(#fbc02d,#ffe082);
+  background: #fbc02d;
 }
 
 button {
@@ -110,7 +61,7 @@ button {
   cursor: pointer;
 }
 
-/* ================= TIMELINE ================= */
+/* TIMELINE */
 #timeline-1 {
   display: none;
   opacity: 0;
@@ -119,7 +70,7 @@ button {
 
 .timeline-container {
   position: relative;
-  padding: 100px 0;
+  padding: 150px 0 200px 0;
   background-attachment: fixed;
   background-size: cover;
 }
@@ -130,6 +81,7 @@ button {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.7);
+  top: 0;
 }
 
 .timeline {
@@ -139,12 +91,13 @@ button {
   flex-direction: column;
 }
 
+/* ITEM */
 .timeline-item {
-  padding: 40px 0;
+  padding: 100px 0;
   opacity: 0.3;
   filter: blur(2px);
   transition: 0.5s;
-  transform: translateY(-80px);
+  transform: translateY(80px);
 }
 
 .timeline-item--active {
@@ -153,13 +106,16 @@ button {
   filter: blur(0);
 }
 
+/* CONTEÚDO */
 .timeline__content {
   text-align: center;
   color: #fff;
 }
 
 .timeline__img {
-  max-width: 100%;
+  max-width: 90%;
+  display: block;
+  margin: auto;
   box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 
@@ -170,13 +126,6 @@ button {
 .timeline__content-desc {
   color: rgba(255,255,255,0.7);
 }
-
-/* RESPONSIVO */
-@media(max-width:768px){
-  .conteudo {
-    left: 50%;
-  }
-}
 </style>
 </head>
 
@@ -185,22 +134,10 @@ button {
 <!-- CONTAGEM -->
 <div id="intro"><div id="count">1</div></div>
 
-<!-- BANNER -->
-<header class="banner">
-  <div class="overlay"></div>
-  <img src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-
-  <div class="top-left">Obrigado por tudo</div>
-  <div class="top-right">Te amo</div>
-
-  <div class="conteudo">
-    <h1>Nostalgia</h1>
-    <div class="papel">
-      <h2>Parabéns</h2>
-    </div>
-    <div class="mensagem">
-      Que seu dia seja repleto de alegria, saúde e sonhos realizados.
-    </div>
+<!-- HEADER -->
+<header>
+  <div class="card">
+    <img src="file_00000000ecc4720ea5cb334a68dc5c84.png">
   </div>
 </header>
 
@@ -274,7 +211,7 @@ let interval = setInterval(() => {
   }
 },1000);
 
-// BOTÃO MOSTRAR TIMELINE
+// BOTÃO
 function mostrar(){
   let timeline = document.getElementById("timeline-1");
 
@@ -290,7 +227,7 @@ function mostrar(){
   });
 }
 
-// TIMELINE EFEITO
+// TIMELINE CENTRALIZADA
 (function($){
   $.fn.timeline = function(){
     var selectors = {
@@ -309,12 +246,16 @@ function mostrar(){
 
     $(window).scroll(function(){
       var pos = $(this).scrollTop();
+      var windowHeight = $(window).height();
 
       selectors.item.each(function(){
-        var min = $(this).offset().top;
-        var max = min + $(this).height();
+        var itemTop = $(this).offset().top;
+        var itemHeight = $(this).height();
 
-        if(pos >= min && pos <= max){
+        var center = pos + (windowHeight / 2);
+
+        if(center >= itemTop && center <= itemTop + itemHeight){
+
           selectors.id.css(
             "background-image",
             "url(" + $(this).find(selectors.img).attr("src") + ")"
