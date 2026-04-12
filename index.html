@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surpresa 🎉</title>
-
-<style>
+<title>Surpresa 🎉</title><style>
 @import url('https://fonts.googleapis.com/css?family=Lato:300italic');
 
 body {
@@ -14,7 +11,7 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-/* INTRO (CONTAGEM) */
+/* INTRO */
 #intro {
   position: fixed;
   width: 100%;
@@ -26,7 +23,6 @@ body {
   align-items: center;
   font-size: 80px;
   z-index: 9999;
-  flex-direction: column;
 }
 
 .fade-out {
@@ -50,44 +46,13 @@ header img {
   object-fit: cover;
 }
 
-/* ANIMAÇÃO BOLO */
+/* CAKE ORIGINAL */
 #cake {
   display: block;
   position: relative;
   margin: 50px auto;
 }
 
-/* vela */
-.vela {
-  width: 10px;
-  height: 40px;
-  background: white;
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 5px;
-}
-
-/* chama */
-.fogo {
-  width: 10px;
-  height: 20px;
-  background: orange;
-  border-radius: 50%;
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: fogo 0.3s infinite alternate;
-}
-
-@keyframes fogo {
-  from { transform: translateX(-50%) scale(1); }
-  to { transform: translateX(-50%) scale(1.2); }
-}
-
-/* texto */
 .text {
   text-align: center;
   color: #fff;
@@ -101,36 +66,29 @@ header img {
 .text p {
   font-size: 25px;
 }
-</style>
 
-</head>
-<body>
+/* vela animação */
+.velas {
+  animation: vela 1s infinite alternate;
+  transform-origin: bottom;
+}
 
-<!-- INTRO -->
-<div id="intro">
+@keyframes vela {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(1.1); }
+}
+
+</style></head>
+<body><!-- INTRO --><div id="intro">
   <div id="count">1</div>
-</div>
-
-<!-- HEADER -->
-<header>
-  <img src="arquivo_00000000ecc4720ea5cb334a68dc5c84.png">
-</header>
-
-<!-- BOLO -->
-<div id="cake" style="display:none;">
-  <div style="width:200px;height:100px;background:#fff;margin:auto;border-radius:10px;position:relative;">
-    <div class="vela">
-      <div class="fogo"></div>
-    </div>
-  </div>
-
-  <div class="text">
-    <h1>Happy Birthday!</h1>
-    <p>Jonas</p>
-  </div>
-</div>
-
-<script>
+</div><!-- HEADER --><header>
+  <img src="file_00000000ecc4720ea5cb334a68dc5c84.png">
+</header><!-- BOLO SVG (ESTILO DO QUE VOCÊ MANDOU) --><div id="cake" style="display:none;"><svg width="200" height="200" viewBox="0 0 200 200">  <!-- base do bolo -->  <rect x="20" y="100" width="160" height="60" fill="#fff" rx="10" />  <!-- cobertura -->  <rect x="20" y="80" width="160" height="30" fill="#f8c8dc" rx="10" />  <!-- vela -->  <rect class="velas" x="95" y="40" width="10" height="40" fill="#ffffff" rx="5" />  <!-- chama -->  <ellipse cx="100" cy="35" rx="5" ry="10" fill="orange">
+    <animate attributeName="ry" values="10;14;10" dur="0.4s" repeatCount="indefinite" />
+  </ellipse></svg><div class="text">
+  <h1>Happy Birthday!</h1>
+  <p>Jonas</p>
+</div></div><script>
 let count = 1;
 const countElement = document.getElementById('count');
 const intro = document.getElementById('intro');
@@ -144,17 +102,13 @@ let interval = setInterval(() => {
   } else {
     clearInterval(interval);
 
-    // some com intro
     intro.classList.add('fade-out');
 
-    // mostra animação
     setTimeout(() => {
       cake.style.display = 'block';
     }, 1000);
   }
 
 }, 1000);
-</script>
-
-</body>
+</script></body>
 </html>
