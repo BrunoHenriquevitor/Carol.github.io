@@ -54,12 +54,44 @@ header {
   background: #fbc02d;
 }
 
+/* BOTÃO BONITO */
 button {
-  padding: 15px 25px;
-  background: black;
-  color: white;
+  padding: 16px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background: linear-gradient(45deg, #ffd54f, #ffca28, #ffc107);
   border: none;
+  border-radius: 30px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+  transition: 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 /* TIMELINE */
@@ -69,17 +101,14 @@ button {
   transition: 1s;
 }
 
-/* FUNDO COM PARALLAX REAL */
 .timeline-container {
   position: relative;
   padding: 150px 0 200px 0;
-
   background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
                     url("ca7c2fa3b52627b2f8a54bd8595c3da9.jpg");
-
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* 🔥 efeito que você quer */
+  background-attachment: fixed;
 }
 
 .timeline {
@@ -140,7 +169,7 @@ button {
 <!-- BLOCO -->
 <div class="pre">
   <h2>Tenho algo pra te mostrar 💛</h2>
-  <button onclick="mostrar()">Ver nossos momentos</button>
+  <button onclick="mostrar()">Começar surpresa 🎁</button>
 </div>
 
 <!-- TIMELINE -->
@@ -148,19 +177,25 @@ button {
 
   <div class="timeline">
 
+    <!-- PRIMEIRO CARD (SEU) -->
     <div class="timeline-item">
       <div class="timeline__content">
-        <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Começo</h2>
-        <p class="timeline__content-desc">Foi aqui que tudo começou 💛</p>
+        <img class="timeline__img" src="20260412_133937.jpg">
+        <h2 class="timeline__content-title">Desde o início</h2>
+        <p class="timeline__content-desc">
+          Desde o início você cuidou de mim… mesmo sendo tão nova, assumiu uma responsabilidade enorme.  
+          Pegou um fardo que não era fácil, mas nunca deixou de estar ao meu lado.  
+          E por isso nunca foi estranho te chamar de mãe 💛
+        </p>
       </div>
     </div>
 
+    <!-- OUTROS CARDS -->
     <div class="timeline-item">
       <div class="timeline__content">
         <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
         <h2 class="timeline__content-title">Momentos</h2>
-        <p class="timeline__content-desc">Momentos especiais juntos</p>
+        <p class="timeline__content-desc">Momentos especiais juntos 💛</p>
       </div>
     </div>
 
