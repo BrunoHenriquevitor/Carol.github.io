@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para minha irmã</title>
+<title>Timeline</title>
 
 <style>
 body{
@@ -13,156 +13,98 @@ body{
   color:white;
 }
 
-/* ===== HERO ===== */
-.hero{
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-}
-
-.overlay{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  z-index:1;
-}
-
-.collage img{
-  position:absolute;
-  width:160px;
-  border-radius:10px;
-  transform:rotate(-10deg);
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
-  transition:0.5s;
-}
-
-.collage img:hover{
-  transform:scale(1.05) rotate(-10deg);
-}
-
-/* posições */
-.img1{top:10%;left:5%;}
-.img2{top:25%;left:35%;}
-.img3{top:50%;left:10%;}
-.img4{top:15%;left:70%;}
-.img5{top:60%;left:60%;}
-.img6{top:40%;left:80%;}
-
-/* texto central */
-.hero-text{
-  position:absolute;
-  z-index:2;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
-}
-
-.hero-text h1{
-  font-size:40px;
-  margin:0;
-}
-
-.hero-text p{
-  opacity:0.8;
-}
-
-/* ===== TIMELINE ===== */
+/* CONTAINER */
 .timeline{
+  max-width:800px;
+  margin:50px auto;
   position:relative;
-  max-width:900px;
-  margin:auto;
-  padding:80px 0;
 }
 
-/* 🌻 CAULE DO GIRASSOL */
+/* LINHA */
 .timeline::after{
   content:'';
   position:absolute;
-  width:6px;
-  background:linear-gradient(to bottom, #2ecc71, #145a32);
-  top:-100px;
+  width:4px;
+  background:#f1c40f;
+  top:0;
   bottom:0;
   left:50%;
-  border-radius:20px;
-  animation:grow 2s ease;
-}
-
-/* animação do caule */
-@keyframes grow{
-  from{height:0;}
-  to{height:100%;}
-}
-
-/* 🌻 GIRASSOL NO TOPO */
-.timeline::before{
-  content:'🌻';
-  position:absolute;
-  top:-130px;
-  left:50%;
   transform:translateX(-50%);
-  font-size:60px;
-  z-index:3;
-  animation:spin 4s linear infinite;
 }
 
-@keyframes spin{
-  0%{transform:translateX(-50%) rotate(0);}
-  100%{transform:translateX(-50%) rotate(360deg);}
-}
-
-/* blocos */
-.container{
+/* CARD */
+.timeline-item{
   padding:20px;
   position:relative;
   width:50%;
+}
+
+.timeline-item.left{
+  left:0;
+}
+
+.timeline-item.right{
+  left:50%;
+}
+
+/* CONTEÚDO */
+.timeline-content{
+  background:#222;
+  padding:20px;
+  border-radius:10px;
+  transition:0.4s;
+}
+
+/* IMAGEM */
+.timeline-content img{
+  width:100%;
+  border-radius:10px;
+}
+
+/* TÍTULO */
+.timeline-content h2{
+  margin:10px 0;
+}
+
+/* TEXTO */
+.timeline-content p{
+  opacity:0.8;
+}
+
+/* BOLINHA */
+.timeline-item::after{
+  content:'';
+  position:absolute;
+  width:15px;
+  height:15px;
+  background:#f1c40f;
+  border-radius:50%;
+  top:30px;
+}
+
+.timeline-item.left::after{
+  right:-8px;
+}
+
+.timeline-item.right::after{
+  left:-8px;
+}
+
+/* HOVER */
+.timeline-content:hover{
+  transform:scale(1.03);
+}
+
+/* ANIMAÇÃO */
+.timeline-item{
   opacity:0;
   transform:translateY(50px);
   transition:0.6s;
 }
 
-.container.show{
+.timeline-item.show{
   opacity:1;
   transform:translateY(0);
-}
-
-.left{left:0;}
-.right{left:50%;}
-
-.content{
-  background:#222;
-  padding:20px;
-  border-radius:10px;
-}
-
-/* bolinha */
-.container::after{
-  content:'';
-  position:absolute;
-  width:15px;
-  height:15px;
-  background:gold;
-  border-radius:50%;
-  top:30px;
-}
-
-.left::after{right:-8px;}
-.right::after{left:-8px;}
-
-img{
-  width:100%;
-  border-radius:10px;
-}
-
-/* FINAL */
-.final{
-  text-align:center;
-  padding:60px;
-}
-
-.final h2{
-  color:gold;
 }
 
 /* RESPONSIVO */
@@ -171,17 +113,12 @@ img{
     left:20px;
   }
 
-  .timeline::before{
-    left:20px;
-    transform:none;
-  }
-
-  .container{
+  .timeline-item{
     width:100%;
     padding-left:50px;
   }
 
-  .right{
+  .timeline-item.right{
     left:0;
   }
 }
@@ -190,82 +127,61 @@ img{
 
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="collage">
-    <img src="foto1.jpg" class="img1">
-    <img src="foto2.jpg" class="img2">
-    <img src="foto3.jpg" class="img3">
-    <img src="foto4.jpg" class="img4">
-    <img src="foto5.jpg" class="img5">
-    <img src="foto6.jpg" class="img6">
-  </div>
-
-  <div class="overlay"></div>
-
-  <div class="hero-text">
-    <h1>Para minha irmã 🌻</h1>
-    <p>Uma pequena forma de mostrar o quanto você é importante pra mim</p>
-  </div>
-</div>
-
-<!-- TIMELINE -->
 <div class="timeline">
 
-<div class="container left">
-<div class="content">
-<h3>Nascimento</h3>
-<img src="foto7.jpg">
-<p>Desde o começo você estava comigo.</p>
-</div>
-</div>
+  <!-- CARD 1 -->
+  <div class="timeline-item left">
+    <div class="timeline-content">
+      <img src="foto1.jpg">
+      <h2>2000</h2>
+      <p>Um momento especial que marcou o início de tudo.</p>
+    </div>
+  </div>
 
-<div class="container right">
-<div class="content">
-<h3>Infância</h3>
-<img src="foto8.jpg">
-<p>Entre risadas e bagunças.</p>
-</div>
-</div>
+  <!-- CARD 2 -->
+  <div class="timeline-item right">
+    <div class="timeline-content">
+      <img src="foto2.jpg">
+      <h2>2005</h2>
+      <p>Fase cheia de descobertas e aprendizados.</p>
+    </div>
+  </div>
 
-<div class="container left">
-<div class="content">
-<h3>Momentos</h3>
-<img src="foto9.jpg">
-<p>Você sempre esteve ao meu lado.</p>
-</div>
-</div>
+  <!-- CARD 3 -->
+  <div class="timeline-item left">
+    <div class="timeline-content">
+      <img src="foto3.jpg">
+      <h2>2015</h2>
+      <p>Momentos inesquecíveis ao lado de quem importa.</p>
+    </div>
+  </div>
 
-<div class="container right">
-<div class="content">
-<h3>Hoje</h3>
-<img src="foto10.jpg">
-<p>Obrigado por tudo.</p>
-</div>
-</div>
+  <!-- CARD 4 -->
+  <div class="timeline-item right">
+    <div class="timeline-content">
+      <img src="foto4.jpg">
+      <h2>Hoje</h2>
+      <p>E a história continua sendo escrita...</p>
+    </div>
+  </div>
 
-</div>
-
-<!-- FINAL -->
-<div class="final">
-<p>Isso é só uma parte do quanto você significa pra mim.</p>
-<h2>Te amo mil milhões ❤️</h2>
 </div>
 
 <script>
-const items=document.querySelectorAll('.container');
+const items = document.querySelectorAll('.timeline-item');
 
-function show(){
-  const trigger=window.innerHeight*0.85;
-  items.forEach(el=>{
-    if(el.getBoundingClientRect().top<trigger){
-      el.classList.add('show');
+function showItems(){
+  const trigger = window.innerHeight * 0.85;
+
+  items.forEach(item=>{
+    if(item.getBoundingClientRect().top < trigger){
+      item.classList.add('show');
     }
   });
 }
 
-window.addEventListener('scroll',show);
-show();
+window.addEventListener('scroll', showItems);
+showItems();
 </script>
 
 </body>
