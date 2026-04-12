@@ -5,94 +5,96 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Timeline</title>
 
-<!-- Fonte -->
-<link href="https://fonts.googleapis.com/css?family=Cardo|Pathway+Gothic+One" rel="stylesheet">
-
 <style>
-body{
-  margin:0;
-  font-family:'Cardo', serif;
-  background:#000;
-  color:white;
+html, body, section, article {
+  display: grid;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #121212;
+  color: #ededed;
+  font-family: Arial, sans-serif;
 }
 
 /* CONTAINER */
-.timeline-container{
-  width:100%;
-  min-height:100vh;
-  background-size:cover;
-  background-position:center;
-  transition:1s;
-  position:relative;
+.timeline {
+  place-self: center;
+  max-width: 50em;
+  padding: 40px;
+  gap: 2em;
 }
 
-/* overlay escuro */
-.timeline-container::before{
-  content:'';
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
+/* CARD */
+.timeline article {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5em;
+  align-items: center;
+  padding-bottom: 1em;
 }
 
-/* HEADER */
-.timeline-header{
-  text-align:center;
-  padding:60px 20px;
-  position:relative;
-  z-index:2;
+/* alterna posição (imagem/texto invertido) */
+.timeline article:nth-child(odd) img {
+  order: 2;
+  justify-self: end;
 }
 
-.timeline-header__title{
-  font-family:'Pathway Gothic One', sans-serif;
-  font-size:40px;
+/* separação */
+.timeline article:not(:last-child) {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.timeline-header__subtitle{
-  opacity:0.7;
+/* caixa de texto */
+.timeline__content {
+  padding: 1em;
+  background: rgba(255,255,255,0.07);
+  border-radius: 10px;
 }
 
-/* TIMELINE */
-.timeline{
-  max-width:700px;
-  margin:auto;
-  padding:50px 0;
-  position:relative;
-  z-index:2;
+/* título */
+.timeline__content h1 {
+  margin: 0 0 10px;
+  color: #88d55e;
+  font-size: 1.5em;
 }
 
-/* ITEM */
-.timeline-item{
-  margin-bottom:80px;
-  opacity:0.3;
-  transition:0.5s;
+/* data */
+.timeline__content time {
+  font: 700 2em monospace;
+  display: block;
+  margin-bottom: 10px;
 }
 
-.timeline-item--active{
-  opacity:1;
-  transform:scale(1.02);
+/* texto */
+.timeline__content p {
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.4;
 }
 
-/* TEXTO */
-.timeline__content-title{
-  font-size:40px;
-  margin:10px 0;
-}
-
-.timeline__content-desc{
-  opacity:0.7;
-}
-
-/* IMAGEM */
-.timeline__img{
-  width:100%;
-  border-radius:10px;
+/* imagem */
+.timeline img {
+  width: 100%;
+  max-width: 13em;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 /* RESPONSIVO */
-@media(max-width:768px){
-  .timeline-header__title{
-    font-size:28px;
+@media (max-width: 768px) {
+  .timeline article {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .timeline img {
+    justify-self: center !important;
   }
 }
 </style>
@@ -100,86 +102,49 @@ body{
 
 <body>
 
-<div class="timeline-container" id="timeline-1">
+<section class="timeline">
 
-  <div class="timeline-header">
-    <h2 class="timeline-header__title">Para minha irmã 🌻</h2>
-    <h3 class="timeline-header__subtitle">Nossa história</h3>
-  </div>
-
-  <div class="timeline">
-
-    <!-- CARD 1 -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="foto1.jpg">
-        <h2 class="timeline__content-title">Infância</h2>
-        <p class="timeline__content-desc">
-          Desde pequenos sempre juntos.
-        </p>
-      </div>
+  <!-- CARD 1 -->
+  <article>
+    <div class="timeline__content">
+      <time>01</time>
+      <h1>Infância</h1>
+      <p>Desde o começo você esteve comigo, crescendo juntos em cada momento.</p>
     </div>
+    <img src="foto1.jpg" alt="">
+  </article>
 
-    <!-- CARD 2 -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="foto2.jpg">
-        <h2 class="timeline__content-title">Momentos</h2>
-        <p class="timeline__content-desc">
-          Muitas risadas e memórias.
-        </p>
-      </div>
+  <!-- CARD 2 -->
+  <article>
+    <div class="timeline__content">
+      <time>02</time>
+      <h1>Momentos</h1>
+      <p>Entre risadas, brincadeiras e memórias que nunca vou esquecer.</p>
     </div>
+    <img src="foto2.jpg" alt="">
+  </article>
 
-    <!-- CARD 3 -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="foto3.jpg">
-        <h2 class="timeline__content-title">Crescimento</h2>
-        <p class="timeline__content-desc">
-          Sempre evoluindo juntos.
-        </p>
-      </div>
+  <!-- CARD 3 -->
+  <article>
+    <div class="timeline__content">
+      <time>03</time>
+      <h1>Crescimento</h1>
+      <p>Cada fase da vida sempre tivemos um ao outro.</p>
     </div>
+    <img src="foto3.jpg" alt="">
+  </article>
 
-    <!-- CARD 4 -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="foto4.jpg">
-        <h2 class="timeline__content-title">Hoje</h2>
-        <p class="timeline__content-desc">
-          E ainda temos muito pela frente.
-        </p>
-      </div>
+  <!-- CARD 4 -->
+  <article>
+    <div class="timeline__content">
+      <time>04</time>
+      <h1>Hoje</h1>
+      <p>Obrigado por tudo que você representa pra mim ❤️</p>
     </div>
+    <img src="foto4.jpg" alt="">
+  </article>
 
-  </div>
-</div>
-
-<script>
-const timeline = document.getElementById("timeline-1");
-const items = document.querySelectorAll(".timeline-item");
-
-items[0].classList.add("timeline-item--active");
-timeline.style.backgroundImage = "url(" + items[0].querySelector("img").src + ")";
-
-window.addEventListener("scroll", () => {
-  const pos = window.scrollY;
-
-  items.forEach((item, i) => {
-    const min = item.offsetTop;
-    const max = min + item.offsetHeight;
-
-    if (pos >= min - 200 && pos < max) {
-      items.forEach(el => el.classList.remove("timeline-item--active"));
-      item.classList.add("timeline-item--active");
-
-      timeline.style.backgroundImage =
-        "url(" + item.querySelector("img").src + ")";
-    }
-  });
-});
-</script>
+</section>
 
 </body>
 </html>
