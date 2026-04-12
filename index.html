@@ -69,7 +69,7 @@ button {
   transition: 1s;
 }
 
-/* FUNDO CORRIGIDO */
+/* FUNDO COM EFEITO (SEM BUG) */
 .timeline-container {
   position: relative;
   padding: 150px 0 200px 0;
@@ -81,13 +81,17 @@ button {
   background-position: center;
 }
 
-/* 👇 Só aplica efeito parallax no PC */
-@media (min-width: 768px) {
-  .timeline-container {
-    background-attachment: fixed;
-  }
+/* SIMULA PARALLAX */
+.timeline-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  z-index: -1;
+  transform: scale(1.1);
 }
 
+/* TIMELINE */
 .timeline {
   max-width: 700px;
   margin: auto;
@@ -139,7 +143,7 @@ button {
 <!-- HEADER -->
 <header>
   <div class="card">
-    <img src="arquivo_000000005d24720eb3e4f56b88c9001d.png">
+    <img src="file_000000005d24720eb3e4f56b88c9001d.png">
   </div>
 </header>
 
