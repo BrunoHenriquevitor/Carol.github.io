@@ -3,18 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surpresa 🎉</title>
+<title>Feliz Aniversário 🎉</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Lato:300italic');
-
 body {
   margin: 0;
-  background: #ee9ca7;
-  font-family: 'Lato', sans-serif;
+  background: #1a1a1a;
+  font-family: Arial, sans-serif;
 }
 
-/* TELA DE ENTRADA */
+/* INTRO */
 #intro {
   position: fixed;
   width: 100%;
@@ -36,18 +34,34 @@ body {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* HEADER COM IMAGEM RESPONSIVA */
-header {
-  width: 100%;
-  overflow: hidden;
+/* FUNDO AMARELO */
+.banner {
+  background: linear-gradient(180deg, #ffd54f, #fbc02d);
+  padding: 40px 10px;
+  display: flex;
+  justify-content: center;
 }
 
-header img {
+/* CARD */
+.card {
+  width: 320px;
+  background: #ffffff;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* IMAGEM */
+.card img {
   width: 100%;
-  height: auto;
   display: block;
 }
 
+/* RESPONSIVO */
+@media (min-width: 768px) {
+  .card {
+    width: 400px;
+  }
+}
 </style>
 </head>
 
@@ -59,9 +73,11 @@ header img {
 </div>
 
 <!-- HEADER -->
-<header>
-  <img src="file_00000000ecc4720ea5cb334a68dc5c84.png" alt="Imagem">
-</header>
+<div class="banner">
+  <div class="card">
+    <img src="file_00000000ecc4720ea5cb334a68dc5c84.png">
+  </div>
+</div>
 
 <script>
 let count = 1;
