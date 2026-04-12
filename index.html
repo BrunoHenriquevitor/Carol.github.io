@@ -28,21 +28,12 @@ body {
   z-index: 9999;
 }
 
-/* HEADER */
+/* HEADER SEM MARGEM */
 header {
-  background: linear-gradient(180deg,#ffe082,#fbc02d,#f57f17);
-  padding: 20px;
-  display: flex;
-  justify-content: center;
+  width: 100%;
 }
 
-.card {
-  max-width: 400px;
-  background: #fff;
-  padding: 5px;
-}
-
-.card img {
+header img {
   width: 100%;
   display: block;
 }
@@ -136,23 +127,6 @@ button:hover::before {
   color: #fff;
 }
 
-.timeline__img {
-  width: 260px;
-  height: 250px;
-  object-fit: cover;
-  display: block;
-  margin: auto;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-.timeline__content-title {
-  font-size: 40px;
-}
-
-.timeline__content-desc {
-  color: rgba(255,255,255,0.7);
-}
-
 /* POLAROID */
 .polaroid {
   background: white;
@@ -174,6 +148,14 @@ button:hover::before {
 .polaroid:hover {
   transform: rotate(0deg) scale(1.05);
 }
+
+.timeline__content-title {
+  font-size: 40px;
+}
+
+.timeline__content-desc {
+  color: rgba(255,255,255,0.7);
+}
 </style>
 </head>
 
@@ -184,9 +166,7 @@ button:hover::before {
 
 <!-- HEADER -->
 <header>
-  <div class="card">
-    <img src="file_000000005d24720eb3e4f56b88c9001d.png">
-  </div>
+  <img src="file_000000005d24720eb3e4f56b88c9001d.png">
 </header>
 
 <!-- BLOCO -->
@@ -215,23 +195,6 @@ button:hover::before {
           E por isso nunca foi estranho te chamar de mãe 💛
         </p>
 
-      </div>
-    </div>
-
-    <!-- OUTROS -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Momentos</h2>
-        <p class="timeline__content-desc">Momentos especiais juntos 💛</p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Hoje</h2>
-        <p class="timeline__content-desc">E hoje estamos aqui 💛</p>
       </div>
     </div>
 
@@ -270,28 +233,24 @@ function mostrar(){
   });
 }
 
-// TIMELINE CENTRALIZADA
+// TIMELINE
 (function($){
   $.fn.timeline = function(){
-    var selectors = {
-      item: $(this).find(".timeline-item"),
-      activeClass: "timeline-item--active"
-    };
-
-    selectors.item.eq(0).addClass(selectors.activeClass);
+    var items = $(this).find(".timeline-item");
+    items.eq(0).addClass("timeline-item--active");
 
     $(window).scroll(function(){
       var pos = $(this).scrollTop();
-      var windowHeight = $(window).height();
+      var h = $(window).height();
 
-      selectors.item.each(function(){
-        var itemTop = $(this).offset().top;
-        var itemHeight = $(this).height();
-        var center = pos + (windowHeight / 2);
+      items.each(function(){
+        var top = $(this).offset().top;
+        var height = $(this).height();
+        var center = pos + (h / 2);
 
-        if(center >= itemTop && center <= itemTop + itemHeight){
-          selectors.item.removeClass(selectors.activeClass);
-          $(this).addClass(selectors.activeClass);
+        if(center >= top && center <= top + height){
+          items.removeClass("timeline-item--active");
+          $(this).addClass("timeline-item--active");
         }
       });
     });
