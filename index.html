@@ -7,10 +7,13 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!-- FONTES -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: 'Poppins', sans-serif;
   background: #000;
 }
 
@@ -34,43 +37,39 @@ header img {
   display: block;
 }
 
-/* BLOCO */
+/* BLOCO MODERNO */
 .pre {
   text-align: center;
-  padding: 60px 20px;
-  background: #fbc02d;
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #fff8e1, #fbc02d);
 }
 
-/* TEXTO NOVO */
+/* TEXTO */
 .intro-text {
   max-width: 600px;
   margin: auto;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #333;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
-/* BOTÃO */
+/* BOTÃO MODERNO */
 button {
-  padding: 16px 30px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-  background: linear-gradient(45deg, #ffd54f, #ffca28, #ffc107);
+  padding: 14px 35px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  background: #111;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   transition: 0.3s;
 }
 
 button:hover {
-  transform: translateY(-3px);
-}
-
-button:active {
-  transform: scale(0.95);
+  background: #333;
+  transform: translateY(-2px);
 }
 
 /* TIMELINE */
@@ -113,14 +112,14 @@ button:active {
   color: #fff;
 }
 
-/* POLAROID */
+/* POLAROID MAIS MODERNO */
 .polaroid {
-  background: white;
-  padding: 10px 10px 25px;
+  background: #fdfdfd;
+  padding: 12px 12px 30px;
   width: 260px;
   margin: 0 auto 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-  transform: rotate(-2deg);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+  border-radius: 4px;
   transition: 0.3s;
 }
 
@@ -131,15 +130,19 @@ button:active {
 }
 
 .polaroid:hover {
-  transform: rotate(0deg) scale(1.05);
+  transform: scale(1.05);
 }
 
+/* TÍTULO ELEGANTE */
 .timeline__content-title {
-  font-size: 36px;
+  font-size: 32px;
+  font-family: 'Playfair Display', serif;
 }
 
+/* TEXO */
 .timeline__content-desc {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.75);
+  font-size: 15px;
 }
 </style>
 </head>
@@ -154,7 +157,7 @@ button:active {
   <img src="file_000000005d24720eb3e4f56b88c9001d.png">
 </header>
 
-<!-- BLOCO COM TEXTO + BOTÃO -->
+<!-- TEXTO + BOTÃO -->
 <div class="pre">
 
   <div class="intro-text">
@@ -168,7 +171,7 @@ button:active {
     </p>
   </div>
 
-  <button onclick="mostrar()">Começar surpresa 🎁</button>
+  <button onclick="mostrar()">Começar surpresa</button>
 
 </div>
 
