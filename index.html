@@ -29,9 +29,6 @@ body {
 }
 
 /* HEADER */
-header {
-  width: 100%;
-}
 header img {
   width: 100%;
   display: block;
@@ -57,21 +54,9 @@ button {
   position: relative;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  transition: 0.3s;
 }
 button:hover { transform: translateY(-3px); }
 button:active { transform: scale(0.95); }
-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
-  transition: 0.5s;
-}
-button:hover::before { left: 100%; }
 
 /* TIMELINE */
 #timeline-1 {
@@ -81,7 +66,6 @@ button:hover::before { left: 100%; }
 }
 
 .timeline-container {
-  position: relative;
   padding: 150px 0 200px 0;
   background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
                     url("ca7c2fa3b52627b2f8a54bd8595c3da9.jpg");
@@ -102,12 +86,10 @@ button:hover::before { left: 100%; }
   opacity: 0.3;
   filter: blur(3px);
   transition: 0.5s;
-  transform: translateY(80px);
 }
 
 .timeline-item--active {
   opacity: 1;
-  transform: translateY(0);
   filter: blur(0);
 }
 
@@ -119,12 +101,10 @@ button:hover::before { left: 100%; }
 /* POLAROID */
 .polaroid {
   background: white;
-  padding: 10px 10px 25px 10px;
+  padding: 10px 10px 25px;
   width: 260px;
-  margin: 0 auto;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  margin: auto;
   transform: rotate(-2deg);
-  transition: 0.3s;
 }
 
 .polaroid img {
@@ -133,33 +113,21 @@ button:hover::before { left: 100%; }
   object-fit: cover;
 }
 
-.polaroid:hover {
-  transform: rotate(0deg) scale(1.05);
-}
-
-/* IMAGENS PADRÃO */
+/* IMG PADRÃO */
 .timeline__img {
   width: 260px;
   height: 250px;
   object-fit: cover;
-  display: block;
   margin: auto;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  display: block;
 }
 
-.timeline__content-title {
-  font-size: 40px;
-}
-
-.timeline__content-desc {
-  color: rgba(255,255,255,0.7);
-}
 </style>
 </head>
 
 <body>
 
-<!-- CONTAGEM -->
+<!-- INTRO -->
 <div id="intro"><div id="count">1</div></div>
 
 <!-- HEADER -->
@@ -167,7 +135,7 @@ button:hover::before { left: 100%; }
   <img src="file_000000005d24720eb3e4f56b88c9001d.png">
 </header>
 
-<!-- BLOCO -->
+<!-- BOTÃO -->
 <div class="pre">
   <h2>Tenho algo pra te mostrar 💛</h2>
   <button onclick="mostrar()">Começar surpresa 🎁</button>
@@ -181,25 +149,19 @@ button:hover::before { left: 100%; }
     <div class="timeline-item">
       <div class="timeline__content">
         <img class="timeline__img" src="20260412_134002.jpg">
-        <h2 class="timeline__content-title">Antes de tudo</h2>
-        <p class="timeline__content-desc">
-          Antes de tudo… você também era só uma criança,  
-          cheia de sonhos e sem imaginar tudo que ainda viria pela frente 💛
-        </p>
+        <p>Antes de tudo… você também era só uma criança 💛</p>
       </div>
     </div>
 
-    <!-- CARD 2 -->
+    <!-- CARD 2 (CORRIGIDO) -->
     <div class="timeline-item">
       <div class="timeline__content">
         <div class="polaroid">
-          <img src="20260412_133949.jpg">
+          <img src="20260412_133937.jpg">
         </div>
-        <h2 class="timeline__content-title">Desde o início</h2>
-        <p class="timeline__content-desc">
-          Desde o início você cuidou de mim… mesmo sendo tão nova, assumiu uma responsabilidade enorme.  
-          Pegou um fardo que não era fácil, mas nunca deixou de estar ao meu lado.  
-          E por isso nunca foi estranho te chamar de mãe 💛
+        <p>
+          Desde o início você cuidou de mim…  
+          nunca deixou de estar ao meu lado 💛
         </p>
       </div>
     </div>
@@ -208,11 +170,9 @@ button:hover::before { left: 100%; }
     <div class="timeline-item">
       <div class="timeline__content">
         <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Por nós dois</h2>
-        <p class="timeline__content-desc">
+        <p>
           Você carregava muito nas costas…  
-          cuidava de mim e do Matheus ao mesmo tempo,  
-          e ainda assim nunca deixou de nos dar todo o carinho 💛
+          cuidava de mim e do Matheus 💛
         </p>
       </div>
     </div>
@@ -221,61 +181,37 @@ button:hover::before { left: 100%; }
 </div>
 
 <script>
-// CONTAGEM
+// INTRO
 let count = 1;
-let intro = document.getElementById('intro');
-let countEl = document.getElementById('count');
-
-let interval = setInterval(() => {
+let interval = setInterval(()=>{
   count++;
-  if(count <= 3){
-    countEl.innerText = count;
-  } else {
+  document.getElementById('count').innerText = count;
+  if(count>3){
     clearInterval(interval);
-    intro.style.display = "none";
+    document.getElementById('intro').style.display="none";
   }
 },1000);
 
-// BOTÃO
+// MOSTRAR
 function mostrar(){
-  let timeline = document.getElementById("timeline-1");
-  timeline.style.display = "block";
-
-  setTimeout(()=>{
-    timeline.style.opacity = "1";
-  },100);
-
-  window.scrollTo({
-    top: timeline.offsetTop,
-    behavior: "smooth"
-  });
+  let t = document.getElementById("timeline-1");
+  t.style.display="block";
+  setTimeout(()=> t.style.opacity="1",100);
 }
 
-// TIMELINE
-(function($){
-  $.fn.timeline = function(){
-    var items = $(this).find(".timeline-item");
-    items.eq(0).addClass("timeline-item--active");
+// SCROLL
+$(window).scroll(function(){
+  let pos = $(this).scrollTop();
+  let h = $(window).height();
 
-    $(window).scroll(function(){
-      var pos = $(this).scrollTop();
-      var h = $(window).height();
-
-      items.each(function(){
-        var top = $(this).offset().top;
-        var height = $(this).height();
-        var center = pos + (h / 2);
-
-        if(center >= top && center <= top + height){
-          items.removeClass("timeline-item--active");
-          $(this).addClass("timeline-item--active");
-        }
-      });
-    });
-  };
-})(jQuery);
-
-$("#timeline-1").timeline();
+  $(".timeline-item").each(function(){
+    let top = $(this).offset().top;
+    if(pos + h/2 >= top){
+      $(".timeline-item").removeClass("timeline-item--active");
+      $(this).addClass("timeline-item--active");
+    }
+  });
+});
 </script>
 
 </body>
