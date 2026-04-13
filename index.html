@@ -16,11 +16,10 @@ body {
   background: #000;
 }
 
-/* INTRO */
+/* INTRO AMARELA */
 #intro {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: #000;
   display: flex;
   justify-content: center;
@@ -32,45 +31,45 @@ body {
   font-size: 120px;
   font-weight: bold;
   color: #fbbf24;
+  animation: pulse 1s infinite;
 }
 
-/* HEADER */
+@keyframes pulse {
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+}
+
+/* HEADER (INALTERADO) */
 header img {
   width: 100%;
   display: block;
 }
 
-/* HERO (IMAGEM + BOTÃO) */
-.hero {
+/* BLOCO IMAGEM + BOTÃO */
+.pre {
   position: relative;
-  width: 100%;
-  height: 100vh;
-
-  background-image: url("079ce57f-7b20-404e-9a97-abb6864bbdcd.png");
-  background-size: cover;
-  background-position: center;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 60px;
 }
 
-.hero button {
-  padding: 14px 40px;
-  font-size: 16px;
+/* IMAGEM IGUAL HEADER */
+.pre img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* BOTÃO SOBRE IMAGEM */
+.pre button {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 35px;
+  font-size: 15px;
   color: #fff;
-  background: rgba(0,0,0,0.8);
+  background: #111;
   border: none;
   border-radius: 50px;
-  backdrop-filter: blur(10px);
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.hero button:hover {
-  transform: scale(1.05);
-  background: rgba(0,0,0,0.9);
 }
 
 /* TIMELINE */
@@ -80,31 +79,40 @@ header img {
   transition: 1s;
 }
 
+/* FUNDO DINÂMICO */
 .timeline-container {
   position: relative;
-  padding: 150px 0 200px 0;
+  padding: 150px 0;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  transition: background-image 0.6s ease;
 }
 
-/* LINHA */
+/* overlay escuro */
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+/* LINHA CENTRAL */
 .timeline-line {
   position: absolute;
   left: 50%;
-  top: 0;
   width: 2px;
-  height: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #fbbf24, transparent);
   transform: translateX(-50%);
-  background: linear-gradient(to bottom, #fbbf24, transparent);
-  box-shadow: 0 0 10px rgba(251,191,36,0.6);
+  z-index: 1;
 }
 
-/* CONTAINER */
 .timeline {
+  position: relative;
   max-width: 700px;
   margin: auto;
+  z-index: 2;
 }
 
 /* ITEM */
@@ -120,27 +128,26 @@ header img {
   filter: blur(0);
 }
 
-/* POLAROID */
+/* POLAROID MAIS FINA */
 .polaroid {
   background: #fff;
-  padding: 8px 8px 20px;
+  padding: 6px 6px 18px;
   width: 230px;
-  margin: 0 auto 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+  margin: auto;
   cursor: pointer;
   transition: 0.3s;
 }
 
+/* TORTO SUAVE */
 .timeline-item:nth-child(odd) .polaroid {
   transform: rotate(-1deg);
 }
-
 .timeline-item:nth-child(even) .polaroid {
   transform: rotate(1deg);
 }
 
 .polaroid:hover {
-  transform: scale(1.04) rotate(0deg);
+  transform: scale(1.05) rotate(0);
 }
 
 .polaroid img {
@@ -162,16 +169,15 @@ header img {
 
 .timeline__content-desc {
   color: rgba(255,255,255,0.8);
-  max-width: 450px;
+  max-width: 500px;
   margin: auto;
-  line-height: 1.6;
 }
 
 /* OVERLAY */
 #overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -198,7 +204,9 @@ header img {
 <body>
 
 <!-- INTRO -->
-<div id="intro"><div id="count">1</div></div>
+<div id="intro">
+  <div id="count">3</div>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -206,14 +214,14 @@ header img {
 </header>
 
 <!-- IMAGEM COM BOTÃO -->
-<div class="hero">
-  <button onclick="mostrar()">Começar surpresa</button>
+<div class="pre">
+  <img src="079ce57f-7b20-404e-9a97-abb6864bbdcd.png">
+  <button onclick="mostrar()">Ver nossos momentos</button>
 </div>
 
 <!-- TIMELINE -->
 <div class="timeline-container" id="timeline-1">
-
-  <div class="timeline-line" id="linha"></div>
+  <div class="timeline-line"></div>
 
   <div class="timeline">
 
@@ -224,7 +232,7 @@ header img {
         </div>
         <h2 class="timeline__content-title">Antes de tudo</h2>
         <p class="timeline__content-desc">
-          Antes de tudo... voce tambem era so uma crianca,
+          Antes de tudo... você também era só uma criança,
           cheia de sonhos e sem imaginar tudo que ainda viria pela frente.
         </p>
       </div>
@@ -235,11 +243,10 @@ header img {
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="20260412_133937.jpg">
         </div>
-        <h2 class="timeline__content-title">Desde o inicio</h2>
+        <h2 class="timeline__content-title">Desde o início</h2>
         <p class="timeline__content-desc">
-          Desde o inicio voce cuidou de mim... mesmo sendo tao nova, assumiu uma responsabilidade enorme.
-          Pegou um fardo que nao era facil, mas nunca deixou de estar ao meu lado.
-          E por isso nunca foi estranho te chamar de mae.
+          Desde o início você cuidou de mim... mesmo sendo tão nova,
+          assumiu uma responsabilidade enorme e nunca saiu do meu lado.
         </p>
       </div>
     </div>
@@ -249,11 +256,10 @@ header img {
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="20260412_133949.jpg">
         </div>
-        <h2 class="timeline__content-title">Por nos dois</h2>
+        <h2 class="timeline__content-title">Por nós dois</h2>
         <p class="timeline__content-desc">
-          Voce carregava muito nas costas...
-          cuidava de mim e do Matheus ao mesmo tempo,
-          e ainda assim nunca deixou de nos dar todo o carinho.
+          Você cuidava de mim e do Matheus ao mesmo tempo,
+          e mesmo assim nunca deixou faltar amor.
         </p>
       </div>
     </div>
@@ -269,12 +275,12 @@ header img {
 </div>
 
 <script>
-// CONTAGEM
-let count = 1;
+// INTRO
+let count = 3;
 let interval = setInterval(()=>{
-  count++;
-  document.getElementById('count').innerText = count;
-  if(count > 3){
+  count--;
+  document.getElementById('count').innerText = count > 0 ? count : "";
+  if(count <= 0){
     clearInterval(interval);
     document.getElementById('intro').style.display="none";
   }
@@ -285,20 +291,14 @@ function mostrar(){
   let t = document.getElementById("timeline-1");
   t.style.display="block";
   setTimeout(()=> t.style.opacity="1",100);
-  window.scrollTo({ top: t.offsetTop, behavior: "smooth" });
 
-  atualizarFundo(document.querySelector(".timeline-item"));
+  window.scrollTo({
+    top: t.offsetTop,
+    behavior: "smooth"
+  });
 }
 
-// FUNDO DINÂMICO
-function atualizarFundo(item){
-  let img = item.querySelector("img").src;
-
-  document.querySelector(".timeline-container").style.backgroundImage =
-    `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url(${img})`;
-}
-
-// SCROLL
+// SCROLL + TROCA FUNDO
 $(window).scroll(function(){
   let pos = $(this).scrollTop();
   let h = $(window).height();
@@ -310,42 +310,26 @@ $(window).scroll(function(){
       $(".timeline-item").removeClass("timeline-item--active");
       $(this).addClass("timeline-item--active");
 
-      atualizarFundo(this);
+      // MUDA FUNDO
+      let img = $(this).find("img").attr("src");
+      $(".timeline-container").css("background-image",
+        `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${img})`
+      );
     }
   });
-
-  // LINHA
-  let timelineTop = $("#timeline-1").offset().top;
-  let timelineHeight = $("#timeline-1").height();
-
-  let progresso = (pos + h - timelineTop) / timelineHeight;
-  progresso = Math.max(0, Math.min(1, progresso));
-
-  $("#linha").css("height", (progresso * 100) + "%");
 });
 
 // OVERLAY
-let aberta = false;
-
 function abrirImagem(el){
-  if(aberta){
-    fecharImagem();
-    return;
-  }
-
   let src = el.querySelector("img").src;
-
   document.getElementById("overlay-img").src = src;
   document.getElementById("overlay").classList.add("show");
-
   document.body.style.overflow = "hidden";
-  aberta = true;
 }
 
 function fecharImagem(){
   document.getElementById("overlay").classList.remove("show");
   document.body.style.overflow = "auto";
-  aberta = false;
 }
 </script>
 
