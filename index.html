@@ -30,11 +30,8 @@ body {
 
 #count {
   font-size: 120px;
-  font-weight: 300;
-  letter-spacing: -0.05em;
-  background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  color: #fbbf24;
 }
 
 /* HEADER */
@@ -79,14 +76,13 @@ button {
 .timeline-container {
   position: relative;
   padding: 150px 0 200px 0;
-  background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.5)),
-                    url("ca7c2fa3b52627b2f8a54bd8595c3da9.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  transition: background-image 0.6s ease;
 }
 
-/* LINHA ANIMADA */
+/* LINHA */
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -96,9 +92,9 @@ button {
   transform: translateX(-50%);
   background: linear-gradient(to bottom, #fbbf24, transparent);
   box-shadow: 0 0 10px rgba(251,191,36,0.6);
-  transition: height 0.2s;
 }
 
+/* CONTAINER */
 .timeline {
   max-width: 700px;
   margin: auto;
@@ -155,11 +151,10 @@ button {
 .timeline__content-title {
   font-size: 32px;
   font-family: 'Playfair Display', serif;
-  margin-bottom: 10px;
 }
 
 .timeline__content-desc {
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.8);
   max-width: 450px;
   margin: auto;
   line-height: 1.6;
@@ -195,12 +190,15 @@ button {
 
 <body>
 
+<!-- INTRO -->
 <div id="intro"><div id="count">1</div></div>
 
+<!-- HEADER -->
 <header>
   <img src="file_000000005d24720eb3e4f56b88c9001d.png">
 </header>
 
+<!-- TEXTO -->
 <div class="pre">
   <div class="intro-text">
     <p>
@@ -213,6 +211,7 @@ button {
   <button onclick="mostrar()">Começar surpresa</button>
 </div>
 
+<!-- TIMELINE -->
 <div class="timeline-container" id="timeline-1">
 
   <div class="timeline-line" id="linha"></div>
@@ -266,6 +265,7 @@ button {
   </div>
 </div>
 
+<!-- OVERLAY -->
 <div id="overlay" onclick="fecharImagem()">
   <div class="overlay-content">
     <img id="overlay-img">
@@ -284,18 +284,41 @@ let interval = setInterval(()=>{
   }
 },1000);
 
-// MOSTRAR
+// MOSTRAR TIMELINE
 function mostrar(){
   let t = document.getElementById("timeline-1");
   t.style.display="block";
   setTimeout(()=> t.style.opacity="1",100);
   window.scrollTo({ top: t.offsetTop, behavior: "smooth" });
+
+  atualizarFundo(document.querySelector(".timeline-item"));
 }
 
-// SCROLL + LINHA
+// FUNDO DINÂMICO
+function atualizarFundo(item){
+  let img = item.querySelector("img").src;
+
+  document.querySelector(".timeline-container").style.backgroundImage =
+    `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url(${img})`;
+}
+
+// SCROLL
 $(window).scroll(function(){
   let pos = $(this).scrollTop();
   let h = $(window).height();
+
+  $(".timeline-item").each(function(){
+    let top = $(this).offset().top;
+
+    if(pos + h/2 >= top){
+      $(".timeline-item").removeClass("timeline-item--active");
+      $(this).addClass("timeline-item--active");
+
+      atualizarFundo(this);
+    }
+  });
+
+  // LINHA
   let timelineTop = $("#timeline-1").offset().top;
   let timelineHeight = $("#timeline-1").height();
 
@@ -303,17 +326,9 @@ $(window).scroll(function(){
   progresso = Math.max(0, Math.min(1, progresso));
 
   $("#linha").css("height", (progresso * 100) + "%");
-
-  $(".timeline-item").each(function(){
-    let top = $(this).offset().top;
-    if(pos + h/2 >= top){
-      $(".timeline-item").removeClass("timeline-item--active");
-      $(this).addClass("timeline-item--active");
-    }
-  });
 });
 
-// IMAGEM + FUNDO
+// OVERLAY
 let aberta = false;
 
 function abrirImagem(el){
@@ -326,9 +341,6 @@ function abrirImagem(el){
 
   document.getElementById("overlay-img").src = src;
   document.getElementById("overlay").classList.add("show");
-
-  document.querySelector(".timeline-container").style.backgroundImage =
-    `linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.5)), url(${src})`;
 
   document.body.style.overflow = "hidden";
   aberta = true;
