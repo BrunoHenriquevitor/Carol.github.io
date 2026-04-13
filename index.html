@@ -3,20 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz Aniversário 🎉🌻</title>
+<title>Feliz Aniversário 🎉</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
   font-family: 'Poppins', sans-serif;
   background: #000;
+  overflow-x: hidden;
 }
 
 /* INTRO */
@@ -26,168 +23,163 @@ body {
   background: #000;
   z-index: 9999;
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: opacity 0.5s ease;
+  align-items: center;
 }
 
-#intro.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
+#intro.hidden { opacity:0; pointer-events:none; transition:.5s; }
 
 #count {
   font-size: 120px;
   font-weight: 300;
-  letter-spacing: -0.05em;
-  background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg,#fbbf24,#f59e0b);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 /* HEADER */
-header img {
-  width: 100%;
-  display: block;
+header {
+  width:100%;
+  height:70vh;
+  background:url("arquivo_000000005d24720eb3e4f56b88c9001d.png") center/cover no-repeat;
+  position:relative;
 }
 
-/* BLOCO TEXTO */
-.pre {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(180deg, #fff8e1, #fbc02d);
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.2);
 }
 
+/* TEXTO */
 .intro-text {
-  max-width: 600px;
-  margin: auto;
-  font-size: 18px;
-  line-height: 1.8;
-  color: #333;
-  margin-bottom: 40px;
+  text-align:center;
+  padding:80px 20px;
+  background: linear-gradient(#fbbf24,#fde68a);
+}
+
+.intro-text h1 {
+  font-size:32px;
+  margin-bottom:20px;
+}
+
+.intro-text p {
+  font-size:18px;
+  max-width:500px;
+  margin:auto;
 }
 
 /* BOTÃO */
-button {
-  padding: 14px 35px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
-  background: #111;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: 0.3s;
+.btn {
+  margin-top:30px;
+  padding:15px 30px;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:16px;
+  transition:.3s;
 }
 
-button:hover {
-  background: #333;
-  transform: translateY(-2px);
+.btn:hover {
+  transform: scale(1.05);
+  background:#000;
 }
 
 /* TIMELINE */
 .timeline-section {
-  display: none;
-  opacity: 0;
-  transition: opacity 1s ease;
-  padding: 80px 0;
-  position: relative;
-  background: linear-gradient(180deg, #0a0a0a 0%, #171717 50%, #0a0a0a 100%);
-}
-
-.timeline-section.visible {
-  display: block;
+  display:none;
+  opacity:0;
+  transition:1s;
+  padding:80px 0;
+  background:#111;
 }
 
 .timeline-section.show {
-  opacity: 1;
-}
-
-/* Linha */
-.timeline-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, transparent, rgba(251,191,36,0.4), transparent);
-  transform: translateX(-50%);
+  display:block;
+  opacity:1;
 }
 
 .timeline {
-  max-width: 700px;
-  margin: auto;
-  padding: 0 20px;
+  max-width:700px;
+  margin:auto;
 }
 
-/* Item */
+/* ITEM */
 .timeline-item {
-  padding: 80px 0;
-  opacity: 0.3;
-  filter: blur(2px);
-  transform: scale(0.95);
-  transition: all 0.6s ease;
+  padding:80px 0;
+  opacity:.3;
+  transform:scale(.9);
+  transition:.5s;
+  text-align:center;
 }
 
 .timeline-item.active {
-  opacity: 1;
-  filter: blur(0);
-  transform: scale(1);
+  opacity:1;
+  transform:scale(1);
 }
 
-.timeline-content {
-  text-align: center;
-}
-
-/* Indicador */
-.indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(251,191,36,0.3);
-  margin-bottom: 40px;
-}
-
-.timeline-item.active .indicator {
-  background: #fbbf24;
-  box-shadow: 0 0 20px rgba(251,191,36,0.6);
-}
-
-/* Polaroid */
+/* POLAROID */
 .polaroid {
-  background: #fff;
-  padding: 12px 12px 40px;
-  margin-bottom: 30px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  background:#fff;
+  padding:12px 12px 40px;
+  margin-bottom:20px;
+  cursor:pointer;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
 }
 
-.polaroid-image {
-  width: 260px;
-  height: 260px;
-  overflow: hidden;
-  margin: auto;
+/* torto */
+.timeline-item:nth-child(odd) .polaroid { transform:rotate(-3deg); }
+.timeline-item:nth-child(even) .polaroid { transform:rotate(3deg); }
+
+.polaroid:hover { transform:scale(1.05) rotate(0); }
+
+.polaroid img {
+  width:260px;
+  height:260px;
+  object-fit:cover;
 }
 
-.polaroid-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Texto */
+/* TEXTOS */
 .timeline-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  margin-bottom: 16px;
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family:'Playfair Display';
+  font-size:26px;
+  color:#fbbf24;
 }
 
 .timeline-desc {
-  color: #9ca3af;
-  max-width: 450px;
-  margin: auto;
+  color:#ccc;
+  max-width:400px;
+  margin:auto;
+}
+
+/* OVERLAY */
+#overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+}
+
+#overlay.show {
+  opacity:1;
+  pointer-events:all;
+}
+
+#overlay img {
+  max-width:90%;
+  max-height:80%;
+  border:10px solid #fff;
+  border-bottom:40px solid #fff;
+  transform:rotate(-2deg);
 }
 </style>
 </head>
@@ -200,126 +192,119 @@ button:hover {
 </div>
 
 <!-- HEADER -->
-<header>
-  <img src="file_000000005d24720eb3e4f56b88c9001d.png">
-</header>
+<header></header>
 
 <!-- TEXTO -->
-<div class="pre">
-  <div class="intro-text">
-    <p>
-      Eu quis fazer isso pra você…<br>
-      pra te mostrar o quanto cada momento ficou guardado em mim.<br><br>
-      Essa linha do tempo não é só sobre fotos…<br>
-      é sobre tudo que você fez por mim,<br>
-      e todas as vezes que esteve ao meu lado, independente de tudo 💛
-    </p>
-  </div>
+<section class="intro-text">
+  <h1>Eu quis fazer isso pra você…</h1>
+  <p>
+    pra te mostrar o quanto cada momento ficou guardado em mim.
+    Essa linha do tempo não é só sobre fotos…
+    é sobre tudo que você fez por mim,
+    e todas as vezes que esteve ao meu lado.
+  </p>
 
-  <button onclick="mostrarTimeline()">Começar</button>
-</div>
+  <button class="btn" onclick="mostrarTimeline()">
+    Ver nossos momentos
+  </button>
+</section>
 
 <!-- TIMELINE -->
 <section class="timeline-section" id="timeline">
-  <div class="timeline-line"></div>
-  <div class="timeline">
+<div class="timeline">
 
-    <!-- CARD 1 -->
-    <div class="timeline-item">
-      <div class="timeline-content">
-        <div class="indicator"></div>
-        <div class="polaroid">
-          <div class="polaroid-image">
-            <img src="20260412_134002.jpg">
-          </div>
-        </div>
-        <h2 class="timeline-title">Antes de tudo</h2>
-        <p class="timeline-desc">
-          Antes de tudo... voce tambem era so uma crianca cheia de sonhos.
-        </p>
-      </div>
-    </div>
-
-    <!-- CARD 2 -->
-    <div class="timeline-item">
-      <div class="timeline-content">
-        <div class="indicator"></div>
-        <div class="polaroid">
-          <div class="polaroid-image">
-            <img src="20260412_133937.jpg">
-          </div>
-        </div>
-        <h2 class="timeline-title">Desde o inicio</h2>
-        <p class="timeline-desc">
-          Desde o inicio voce cuidou de mim e sempre esteve ao meu lado.
-        </p>
-      </div>
-    </div>
-
-    <!-- CARD 3 -->
-    <div class="timeline-item">
-      <div class="timeline-content">
-        <div class="indicator"></div>
-        <div class="polaroid">
-          <div class="polaroid-image">
-            <img src="20260412_133949.jpg">
-          </div>
-        </div>
-        <h2 class="timeline-title">Por nos dois</h2>
-        <p class="timeline-desc">
-          Voce cuidava de mim e do Matheus com todo carinho.
-        </p>
-      </div>
-    </div>
-
+<!-- CARD 1 -->
+<div class="timeline-item">
+  <div class="polaroid" onclick="abrirImagem(this)">
+    <img src="20260412_134002.jpg">
   </div>
+  <h2 class="timeline-title">Antes de tudo</h2>
+  <p class="timeline-desc">
+    Antes de tudo... voce tambem era so uma crianca,
+    cheia de sonhos e sem imaginar tudo que ainda viria.
+  </p>
+</div>
+
+<!-- CARD 2 -->
+<div class="timeline-item">
+  <div class="polaroid" onclick="abrirImagem(this)">
+    <img src="20260412_133937.jpg">
+  </div>
+  <h2 class="timeline-title">Desde o inicio</h2>
+  <p class="timeline-desc">
+    Desde o inicio voce cuidou de mim... mesmo sendo tao nova,
+    assumiu uma responsabilidade enorme e nunca saiu do meu lado.
+  </p>
+</div>
+
+<!-- CARD 3 -->
+<div class="timeline-item">
+  <div class="polaroid" onclick="abrirImagem(this)">
+    <img src="20260412_133949.jpg">
+  </div>
+  <h2 class="timeline-title">Por nos dois</h2>
+  <p class="timeline-desc">
+    Voce carregava muito nas costas...
+    cuidava de mim e do Matheus ao mesmo tempo,
+    e nunca deixou faltar amor.
+  </p>
+</div>
+
+</div>
 </section>
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="fecharImagem()">
+  <img id="overlay-img">
+</div>
 
 <script>
 // INTRO
 let count = 1;
-const countEl = document.getElementById('count');
-const introEl = document.getElementById('intro');
+const countEl = document.getElementById("count");
+const intro = document.getElementById("intro");
 
-const interval = setInterval(() => {
+const interval = setInterval(()=>{
   count++;
-  if (count <= 3) {
+  if(count<=3){
     countEl.innerText = count;
   } else {
     clearInterval(interval);
-    setTimeout(() => {
-      introEl.classList.add('hidden');
-    }, 500);
+    setTimeout(()=> intro.classList.add("hidden"),500);
   }
-}, 1000);
+},1000);
 
-// BOTÃO
-function mostrarTimeline() {
-  const timeline = document.getElementById('timeline');
-  timeline.classList.add('visible');
-
-  setTimeout(() => {
-    timeline.classList.add('show');
-  }, 100);
-
-  setTimeout(() => {
-    timeline.scrollIntoView({ behavior: 'smooth' });
-  }, 200);
+// MOSTRAR TIMELINE
+function mostrarTimeline(){
+  const t = document.getElementById("timeline");
+  t.classList.add("show");
+  t.scrollIntoView({behavior:"smooth"});
 }
 
-// SCROLL
-window.addEventListener('scroll', () => {
-  const items = document.querySelectorAll('.timeline-item');
-  const middle = window.innerHeight / 2;
-
-  items.forEach(item => {
+// SCROLL ATIVO
+window.addEventListener("scroll", ()=>{
+  document.querySelectorAll(".timeline-item").forEach(item=>{
     const rect = item.getBoundingClientRect();
-    if (rect.top < middle && rect.bottom > middle) {
-      items.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
+    const middle = window.innerHeight/2;
+
+    if(rect.top < middle && rect.bottom > middle){
+      document.querySelectorAll(".timeline-item").forEach(i=>i.classList.remove("active"));
+      item.classList.add("active");
     }
   });
 });
+
+// ABRIR IMAGEM
+function abrirImagem(el){
+  const img = el.querySelector("img").src;
+  document.getElementById("overlay-img").src = img;
+  document.getElementById("overlay").classList.add("show");
+}
+
+// FECHAR
+function fecharImagem(){
+  document.getElementById("overlay").classList.remove("show");
+}
 </script>
 
 </body>
