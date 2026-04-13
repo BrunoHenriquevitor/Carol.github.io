@@ -48,23 +48,21 @@ header img {
 /* BLOCO IMAGEM + BOTÃO */
 .pre {
   position: relative;
-  max-width: 100%;
   overflow: hidden;
 }
 
-/* IMAGEM */
 .pre img {
   width: 100%;
-  height: auto;
   display: block;
 }
 
-/* OVERLAY SUAVE */
+/* OVERLAY SUAVE (NÃO BLOQUEIA CLIQUE) */
 .pre::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
+  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent 60%);
+  pointer-events: none;
 }
 
 /* BOTÃO */
@@ -77,19 +75,21 @@ header img {
   padding: 14px 28px;
   font-size: 14px;
   font-weight: 500;
-  
+
   color: #fff;
   background: rgba(0,0,0,0.75);
   backdrop-filter: blur(6px);
-  
+
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 40px;
-  
+
   cursor: pointer;
-  
+
   width: 80%;
   max-width: 260px;
   text-align: center;
+
+  z-index: 2; /* 🔥 garante clique */
 
   transition: all 0.3s ease;
 }
@@ -115,11 +115,12 @@ header img {
   background-attachment: fixed;
 }
 
+/* 🔥 OVERLAY MAIS CLARO */
 .timeline-container::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.35); /* antes era 0.6 */
 }
 
 .timeline-line {
@@ -189,12 +190,12 @@ header img {
 }
 
 .timeline__content-desc {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.85);
   max-width: 500px;
   margin: auto;
 }
 
-/* OVERLAY IMAGEM */
+/* OVERLAY IMG */
 #overlay {
   position: fixed;
   inset: 0;
@@ -234,7 +235,7 @@ header img {
   <img src="file_000000005d24720eb3e4f56b88c9001d.png">
 </header>
 
-<!-- BLOCO COM BOTÃO -->
+<!-- IMAGEM COM BOTÃO -->
 <div class="pre">
   <img src="079ce57f-7b20-404e-9a97-abb6864bbdcd.png">
   <button onclick="mostrar()">Ver nossos momentos</button>
@@ -266,21 +267,7 @@ header img {
         </div>
         <h2 class="timeline__content-title">Desde o início</h2>
         <p class="timeline__content-desc">
-          Desde o início você cuidou de mim... mesmo sendo tão nova,
-          assumiu uma responsabilidade enorme e nunca saiu do meu lado.
-        </p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <div class="polaroid" onclick="abrirImagem(this)">
-          <img src="20260412_133949.jpg">
-        </div>
-        <h2 class="timeline__content-title">Por nós dois</h2>
-        <p class="timeline__content-desc">
-          Você cuidava de mim e do Matheus ao mesmo tempo,
-          e mesmo assim nunca deixou faltar amor.
+          Desde o início você cuidou de mim...
         </p>
       </div>
     </div>
@@ -307,7 +294,7 @@ let interval = setInterval(()=>{
   }
 },1000);
 
-// MOSTRAR TIMELINE
+// BOTÃO FUNCIONANDO
 function mostrar(){
   let t = document.getElementById("timeline-1");
   t.style.display="block";
@@ -333,7 +320,7 @@ $(window).scroll(function(){
 
       let img = $(this).find("img").attr("src");
       $(".timeline-container").css("background-image",
-        `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${img})`
+        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${img})`
       );
     }
   });
