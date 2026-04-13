@@ -51,12 +51,8 @@ button {
   border: none;
   border-radius: 30px;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
-button:hover { transform: translateY(-3px); }
-button:active { transform: scale(0.95); }
 
 /* TIMELINE */
 #timeline-1 {
@@ -98,13 +94,15 @@ button:active { transform: scale(0.95); }
   color: #fff;
 }
 
-/* POLAROID */
+/* POLAROID PARA TODOS */
 .polaroid {
   background: white;
   padding: 10px 10px 25px;
   width: 260px;
-  margin: auto;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
   transform: rotate(-2deg);
+  transition: 0.3s;
 }
 
 .polaroid img {
@@ -113,15 +111,17 @@ button:active { transform: scale(0.95); }
   object-fit: cover;
 }
 
-/* IMG PADRÃO */
-.timeline__img {
-  width: 260px;
-  height: 250px;
-  object-fit: cover;
-  margin: auto;
-  display: block;
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.05);
 }
 
+.timeline__content-title {
+  font-size: 36px;
+}
+
+.timeline__content-desc {
+  color: rgba(255,255,255,0.7);
+}
 </style>
 </head>
 
@@ -148,32 +148,53 @@ button:active { transform: scale(0.95); }
     <!-- CARD 1 -->
     <div class="timeline-item">
       <div class="timeline__content">
-        <img class="timeline__img" src="20260412_134002.jpg">
-        <p>Antes de tudo… você também era só uma criança 💛</p>
+
+        <div class="polaroid">
+          <img src="20260412_134002.jpg">
+        </div>
+
+        <h2 class="timeline__content-title">Antes de tudo</h2>
+        <p class="timeline__content-desc">
+          Antes de tudo… você também era só uma criança,  
+          cheia de sonhos e sem imaginar tudo que ainda viria pela frente 💛
+        </p>
+
       </div>
     </div>
 
-    <!-- CARD 2 (CORRIGIDO) -->
+    <!-- CARD 2 -->
     <div class="timeline-item">
       <div class="timeline__content">
+
         <div class="polaroid">
           <img src="20260412_133937.jpg">
         </div>
-        <p>
-          Desde o início você cuidou de mim…  
-          nunca deixou de estar ao meu lado 💛
+
+        <h2 class="timeline__content-title">Desde o início</h2>
+        <p class="timeline__content-desc">
+          Desde o início você cuidou de mim… mesmo sendo tão nova, assumiu uma responsabilidade enorme.  
+          Pegou um fardo que não era fácil, mas nunca deixou de estar ao meu lado.  
+          E por isso nunca foi estranho te chamar de mãe 💛
         </p>
+
       </div>
     </div>
 
     <!-- CARD 3 -->
     <div class="timeline-item">
       <div class="timeline__content">
-        <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <p>
+
+        <div class="polaroid">
+          <img src="20260412_133949.jpg">
+        </div>
+
+        <h2 class="timeline__content-title">Por nós dois</h2>
+        <p class="timeline__content-desc">
           Você carregava muito nas costas…  
-          cuidava de mim e do Matheus 💛
+          cuidava de mim e do Matheus ao mesmo tempo,  
+          e ainda assim nunca deixou de nos dar todo o carinho 💛
         </p>
+
       </div>
     </div>
 
@@ -181,18 +202,18 @@ button:active { transform: scale(0.95); }
 </div>
 
 <script>
-// INTRO
+// CONTAGEM
 let count = 1;
 let interval = setInterval(()=>{
   count++;
   document.getElementById('count').innerText = count;
-  if(count>3){
+  if(count > 3){
     clearInterval(interval);
     document.getElementById('intro').style.display="none";
   }
 },1000);
 
-// MOSTRAR
+// BOTÃO
 function mostrar(){
   let t = document.getElementById("timeline-1");
   t.style.display="block";
@@ -206,6 +227,7 @@ $(window).scroll(function(){
 
   $(".timeline-item").each(function(){
     let top = $(this).offset().top;
+
     if(pos + h/2 >= top){
       $(".timeline-item").removeClass("timeline-item--active");
       $(this).addClass("timeline-item--active");
