@@ -64,7 +64,7 @@ header img {
   pointer-events: none;
 }
 
-/* BOTÃO MENOR */
+/* BOTÃO */
 .pre button {
   position: absolute;
   bottom: 30px;
@@ -218,6 +218,34 @@ header img {
   border: 8px solid white;
   border-bottom: 30px solid white;
 }
+
+/* FOOTER */
+.footer {
+  position: relative;
+}
+
+.footer img {
+  width: 100%;
+  display: block;
+}
+
+/* 🔥 FADE SUAVE ENTRE TIMELINE E FOOTER */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1),
+    rgba(0,0,0,0)
+  );
+
+  z-index: 2;
+}
 </style>
 </head>
 
@@ -240,6 +268,8 @@ header img {
   <div class="timeline-line"></div>
 
   <div class="timeline">
+
+    <!-- (SEUS 6 CARDS — mantive exatamente como estavam) -->
 
     <!-- 1 -->
     <div class="timeline-item">
@@ -339,6 +369,11 @@ header img {
 
   </div>
 </div>
+
+<!-- FOOTER COM EFEITO -->
+<footer class="footer">
+  <img src="646e1c9bf908ad7f2a694dc07ad616db.jpg">
+</footer>
 
 <div id="overlay" onclick="fecharImagem()">
   <div class="overlay-content">
