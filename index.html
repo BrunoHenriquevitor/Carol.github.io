@@ -56,7 +56,7 @@ header img {
   display: block;
 }
 
-/* OVERLAY SUAVE (NÃO BLOQUEIA CLIQUE) */
+/* OVERLAY SUAVE */
 .pre::after {
   content: "";
   position: absolute;
@@ -89,7 +89,7 @@ header img {
   max-width: 260px;
   text-align: center;
 
-  z-index: 2; /* 🔥 garante clique */
+  z-index: 2;
 
   transition: all 0.3s ease;
 }
@@ -115,12 +115,12 @@ header img {
   background-attachment: fixed;
 }
 
-/* 🔥 OVERLAY MAIS CLARO */
+/* FUNDO MAIS CLARO */
 .timeline-container::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35); /* antes era 0.6 */
+  background: rgba(0,0,0,0.35);
 }
 
 .timeline-line {
@@ -195,7 +195,7 @@ header img {
   margin: auto;
 }
 
-/* OVERLAY IMG */
+/* OVERLAY */
 #overlay {
   position: fixed;
   inset: 0;
@@ -235,7 +235,7 @@ header img {
   <img src="file_000000005d24720eb3e4f56b88c9001d.png">
 </header>
 
-<!-- IMAGEM COM BOTÃO -->
+<!-- BLOCO COM BOTÃO -->
 <div class="pre">
   <img src="079ce57f-7b20-404e-9a97-abb6864bbdcd.png">
   <button onclick="mostrar()">Ver nossos momentos</button>
@@ -267,7 +267,21 @@ header img {
         </div>
         <h2 class="timeline__content-title">Desde o início</h2>
         <p class="timeline__content-desc">
-          Desde o início você cuidou de mim...
+          Desde o início você cuidou de mim... mesmo sendo tão nova,
+          assumiu uma responsabilidade enorme e nunca saiu do meu lado.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <div class="polaroid" onclick="abrirImagem(this)">
+          <img src="20260412_133949.jpg">
+        </div>
+        <h2 class="timeline__content-title">Por nós dois</h2>
+        <p class="timeline__content-desc">
+          Você cuidava de mim e do Matheus ao mesmo tempo,
+          e mesmo assim nunca deixou faltar amor.
         </p>
       </div>
     </div>
@@ -294,7 +308,7 @@ let interval = setInterval(()=>{
   }
 },1000);
 
-// BOTÃO FUNCIONANDO
+// MOSTRAR TIMELINE
 function mostrar(){
   let t = document.getElementById("timeline-1");
   t.style.display="block";
