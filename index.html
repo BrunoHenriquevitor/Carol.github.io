@@ -28,11 +28,10 @@ body {
   z-index: 9999;
 }
 
-/* HEADER LIMPO */
+/* HEADER */
 header {
   width: 100%;
 }
-
 header img {
   width: 100%;
   display: block;
@@ -60,15 +59,8 @@ button {
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   transition: 0.3s;
 }
-
-button:hover {
-  transform: translateY(-3px);
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
+button:hover { transform: translateY(-3px); }
+button:active { transform: scale(0.95); }
 button::before {
   content: "";
   position: absolute;
@@ -79,10 +71,7 @@ button::before {
   background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
   transition: 0.5s;
 }
-
-button:hover::before {
-  left: 100%;
-}
+button:hover::before { left: 100%; }
 
 /* TIMELINE */
 #timeline-1 {
@@ -191,8 +180,20 @@ button:hover::before {
     <!-- CARD 1 -->
     <div class="timeline-item">
       <div class="timeline__content">
+        <img class="timeline__img" src="20260412_134002.jpg">
+        <h2 class="timeline__content-title">Antes de tudo</h2>
+        <p class="timeline__content-desc">
+          Antes de tudo… você também era só uma criança,  
+          cheia de sonhos e sem imaginar tudo que ainda viria pela frente 💛
+        </p>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
         <div class="polaroid">
-          <img src="20260412_133937.jpg">
+          <img src="20260412_133949.jpg">
         </div>
         <h2 class="timeline__content-title">Desde o início</h2>
         <p class="timeline__content-desc">
@@ -203,21 +204,16 @@ button:hover::before {
       </div>
     </div>
 
-    <!-- CARD 2 -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Momentos</h2>
-        <p class="timeline__content-desc">Momentos especiais juntos 💛</p>
-      </div>
-    </div>
-
     <!-- CARD 3 -->
     <div class="timeline-item">
       <div class="timeline__content">
         <img class="timeline__img" src="file_00000000ecc4720ea5cb334a68dc5c84.png">
-        <h2 class="timeline__content-title">Hoje</h2>
-        <p class="timeline__content-desc">E hoje estamos aqui 💛</p>
+        <h2 class="timeline__content-title">Por nós dois</h2>
+        <p class="timeline__content-desc">
+          Você carregava muito nas costas…  
+          cuidava de mim e do Matheus ao mesmo tempo,  
+          e ainda assim nunca deixou de nos dar todo o carinho 💛
+        </p>
       </div>
     </div>
 
@@ -243,7 +239,6 @@ let interval = setInterval(() => {
 // BOTÃO
 function mostrar(){
   let timeline = document.getElementById("timeline-1");
-
   timeline.style.display = "block";
 
   setTimeout(()=>{
@@ -256,7 +251,7 @@ function mostrar(){
   });
 }
 
-// TIMELINE COM FOCO CENTRAL
+// TIMELINE
 (function($){
   $.fn.timeline = function(){
     var items = $(this).find(".timeline-item");
