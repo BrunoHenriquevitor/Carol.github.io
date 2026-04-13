@@ -40,11 +40,18 @@ body {
   -webkit-text-fill-color:transparent;
 }
 
-/* HEADER (SEM MEXER) */
+/* HEADER (CORRIGIDO MOBILE) */
 header {
   width:100%;
-  height:70vh;
-  background:url("file_000000005d24720eb3e4f56b88c9001d.png") center/cover no-repeat;
+  height:60vh;
+  background:url("file_000000005d24720eb3e4f56b88c9001d.png") center top / cover no-repeat;
+}
+
+@media (max-width:768px){
+  header {
+    height:50vh;
+    background-position:center top;
+  }
 }
 
 /* TEXTO */
@@ -118,50 +125,46 @@ header {
   padding:80px 0;
   text-align:center;
   opacity:0;
-  transform: translateY(60px);
-  transition: all 0.8s ease;
+  transform:translateY(60px);
+  transition:.8s;
 }
 
 .timeline-item.active {
   opacity:1;
-  transform: translateY(0);
+  transform:translateY(0);
 }
 
-/* POLAROID REALISTA */
+/* POLAROID (FINO) */
 .polaroid {
   background:#fff;
-  padding:12px 12px 40px;
+  padding:8px 8px 20px;
   margin-bottom:20px;
   cursor:pointer;
 
   box-shadow:
     0 4px 6px rgba(0,0,0,0.1),
-    0 15px 35px rgba(0,0,0,0.4);
+    0 10px 25px rgba(0,0,0,0.4);
 
-  transition:0.3s ease;
+  transition:.3s;
 }
 
 /* leve inclinação */
 .timeline-item:nth-child(odd) .polaroid {
-  transform: rotate(-1deg);
+  transform:rotate(-1deg);
 }
 
 .timeline-item:nth-child(even) .polaroid {
-  transform: rotate(1deg);
+  transform:rotate(1deg);
 }
 
-/* hover suave */
 .polaroid:hover {
-  transform: scale(1.04) rotate(0deg);
-  box-shadow:
-    0 8px 15px rgba(0,0,0,0.2),
-    0 25px 60px rgba(0,0,0,0.6);
+  transform:scale(1.04) rotate(0deg);
 }
 
-/* imagem */
+/* IMAGEM */
 .polaroid img {
-  width:260px;
-  height:260px;
+  width:220px;
+  height:220px;
   object-fit:cover;
 }
 
@@ -189,6 +192,7 @@ header {
   opacity:0;
   pointer-events:none;
   transition:.4s;
+  z-index:9999;
 }
 
 #overlay.show {
@@ -197,18 +201,17 @@ header {
 }
 
 #overlay img {
-  max-width:90%;
-  max-height:80%;
-  border:10px solid #fff;
-  border-bottom:40px solid #fff;
+  max-width:85%;
+  max-height:75%;
+  border:8px solid #fff;
+  border-bottom:30px solid #fff;
   transform:rotate(-1deg) scale(0.9);
-  animation: zoom 0.4s ease forwards;
+  animation:zoom .3s ease forwards;
 }
 
-/* animação ao abrir */
 @keyframes zoom {
   to {
-    transform: rotate(0deg) scale(1);
+    transform:rotate(0deg) scale(1);
   }
 }
 </style>
@@ -262,11 +265,13 @@ header {
 </div>
 </section>
 
+<!-- OVERLAY -->
 <div id="overlay" onclick="fecharImagem()">
   <img id="overlay-img">
 </div>
 
 <script>
+// INTRO
 let count = 1;
 const countEl = document.getElementById("count");
 const intro = document.getElementById("intro");
@@ -281,12 +286,14 @@ const interval = setInterval(()=>{
   }
 },1000);
 
+// MOSTRAR TIMELINE
 function mostrarTimeline(){
   const t = document.getElementById("timeline");
   t.classList.add("show");
   t.scrollIntoView({behavior:"smooth"});
 }
 
+// SCROLL ATIVO
 window.addEventListener("scroll", ()=>{
   document.querySelectorAll(".timeline-item").forEach(item=>{
     const rect = item.getBoundingClientRect();
@@ -299,14 +306,27 @@ window.addEventListener("scroll", ()=>{
   });
 });
 
+// ZOOM SEM BUG
+let imagemAberta = false;
+
 function abrirImagem(el){
+  if(imagemAberta){
+    fecharImagem();
+    return;
+  }
+
   const img = el.querySelector("img").src;
   document.getElementById("overlay-img").src = img;
   document.getElementById("overlay").classList.add("show");
+
+  document.body.style.overflow = "hidden";
+  imagemAberta = true;
 }
 
 function fecharImagem(){
   document.getElementById("overlay").classList.remove("show");
+  document.body.style.overflow = "auto";
+  imagemAberta = false;
 }
 </script>
 
