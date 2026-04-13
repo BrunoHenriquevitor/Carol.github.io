@@ -28,7 +28,6 @@ body {
   z-index: 9999;
 }
 
-/* CONTAGEM AMARELA BONITA */
 #count {
   font-size: 120px;
   font-weight: 300;
@@ -87,7 +86,7 @@ button {
   background-attachment: fixed;
 }
 
-/* LINHA BASE */
+/* LINHA ANIMADA */
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -156,10 +155,14 @@ button {
 .timeline__content-title {
   font-size: 32px;
   font-family: 'Playfair Display', serif;
+  margin-bottom: 10px;
 }
 
 .timeline__content-desc {
   color: rgba(255,255,255,0.75);
+  max-width: 450px;
+  margin: auto;
+  line-height: 1.6;
 }
 
 /* OVERLAY */
@@ -212,35 +215,51 @@ button {
 
 <div class="timeline-container" id="timeline-1">
 
-  <!-- LINHA -->
   <div class="timeline-line" id="linha"></div>
 
   <div class="timeline">
 
+    <!-- CARD 1 -->
     <div class="timeline-item">
       <div class="timeline__content">
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="20260412_134002.jpg">
         </div>
         <h2 class="timeline__content-title">Antes de tudo</h2>
+        <p class="timeline__content-desc">
+          Antes de tudo... voce tambem era so uma crianca,
+          cheia de sonhos e sem imaginar tudo que ainda viria pela frente.
+        </p>
       </div>
     </div>
 
+    <!-- CARD 2 -->
     <div class="timeline-item">
       <div class="timeline__content">
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="20260412_133937.jpg">
         </div>
-        <h2 class="timeline__content-title">Desde o início</h2>
+        <h2 class="timeline__content-title">Desde o inicio</h2>
+        <p class="timeline__content-desc">
+          Desde o inicio voce cuidou de mim... mesmo sendo tao nova, assumiu uma responsabilidade enorme.
+          Pegou um fardo que nao era facil, mas nunca deixou de estar ao meu lado.
+          E por isso nunca foi estranho te chamar de mae.
+        </p>
       </div>
     </div>
 
+    <!-- CARD 3 -->
     <div class="timeline-item">
       <div class="timeline__content">
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="20260412_133949.jpg">
         </div>
-        <h2 class="timeline__content-title">Por nós dois</h2>
+        <h2 class="timeline__content-title">Por nos dois</h2>
+        <p class="timeline__content-desc">
+          Voce carregava muito nas costas...
+          cuidava de mim e do Matheus ao mesmo tempo,
+          e ainda assim nunca deixou de nos dar todo o carinho.
+        </p>
       </div>
     </div>
 
@@ -273,14 +292,13 @@ function mostrar(){
   window.scrollTo({ top: t.offsetTop, behavior: "smooth" });
 }
 
-// SCROLL + LINHA PROGRESSO
+// SCROLL + LINHA
 $(window).scroll(function(){
   let pos = $(this).scrollTop();
   let h = $(window).height();
   let timelineTop = $("#timeline-1").offset().top;
   let timelineHeight = $("#timeline-1").height();
 
-  // PROGRESSO DA LINHA
   let progresso = (pos + h - timelineTop) / timelineHeight;
   progresso = Math.max(0, Math.min(1, progresso));
 
@@ -313,7 +331,6 @@ function abrirImagem(el){
     `linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.5)), url(${src})`;
 
   document.body.style.overflow = "hidden";
-
   aberta = true;
 }
 
