@@ -1,270 +1,517 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz Aniversário 🎉</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Aniversário 🎉🌻</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      overflow-x: hidden;
+    }
 
-<!-- FONTES -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    /* INTRO */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #000;
-}
+    #intro.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-/* INTRO */
-#intro {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 80px;
-  z-index: 9999;
-}
+    #count {
+      font-size: 120px;
+      font-weight: bold;
+      color: #fbbf24;
+      animation: pulse 1s ease-in-out infinite;
+    }
 
-/* HEADER */
-header img {
-  width: 100%;
-  display: block;
-}
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
 
-/* BLOCO MODERNO */
-.pre {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(180deg, #fff8e1, #fbc02d);
-}
+    /* HEADER */
+    header {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #fbbf24, #fcd34d, #fef3c7);
+      padding: 80px 20px;
+    }
 
-/* TEXTO */
-.intro-text {
-  max-width: 600px;
-  margin: auto;
-  font-size: 18px;
-  line-height: 1.8;
-  color: #333;
-  margin-bottom: 40px;
-}
+    /* CONFETES */
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      animation: confetti-fall linear infinite;
+    }
 
-/* BOTÃO MODERNO */
-button {
-  padding: 14px 35px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
-  background: #111;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
 
-button:hover {
-  background: #333;
-  transform: translateY(-2px);
-}
+    /* GIRASSOL SVG */
+    .sunflower {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      animation: spin-slow 20s linear infinite;
+    }
 
-/* TIMELINE */
-#timeline-1 {
-  display: none;
-  opacity: 0;
-  transition: 1s;
-}
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-.timeline-container {
-  padding: 150px 0 200px 0;
-  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-                    url("ca7c2fa3b52627b2f8a54bd8595c3da9.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
+    .sunflower-static {
+      animation: none;
+      opacity: 0.3;
+    }
 
-.timeline {
-  max-width: 700px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
+    .sunflower-bg {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      opacity: 0.2;
+    }
 
-.timeline-item {
-  padding: 100px 0;
-  opacity: 0.3;
-  filter: blur(3px);
-  transition: 0.5s;
-}
+    /* TÍTULOS */
+    .header-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-.timeline-item--active {
-  opacity: 1;
-  filter: blur(0);
-}
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: #78350f;
+      margin-bottom: 16px;
+      animation: fade-in-up 1s ease-out forwards;
+    }
 
-.timeline__content {
-  text-align: center;
-  color: #fff;
-}
+    @media (min-width: 768px) {
+      h1 { font-size: 72px; }
+    }
 
-/* POLAROID MAIS MODERNO */
-.polaroid {
-  background: #fdfdfd;
-  padding: 12px 12px 30px;
-  width: 260px;
-  margin: 0 auto 20px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-  border-radius: 4px;
-  transition: 0.3s;
-}
+    .subtitle {
+      font-size: 20px;
+      color: #92400e;
+      font-weight: 300;
+    }
 
-.polaroid img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.polaroid:hover {
-  transform: scale(1.05);
-}
+    /* ONDA DECORATIVA */
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
 
-/* TÍTULO ELEGANTE */
-.timeline__content-title {
-  font-size: 32px;
-  font-family: 'Playfair Display', serif;
-}
+    /* SEÇÃO INTRO */
+    .intro-section {
+      background: linear-gradient(to bottom, #fffbeb, #fef3c7);
+      padding: 80px 20px;
+    }
 
-/* TEXO */
-.timeline__content-desc {
-  color: rgba(255,255,255,0.75);
-  font-size: 15px;
-}
-</style>
+    .intro-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+      border: 1px solid #fde68a;
+      text-align: center;
+    }
+
+    .heart-emoji {
+      font-size: 60px;
+      margin-bottom: 24px;
+    }
+
+    .intro-text {
+      font-size: 18px;
+      color: #78350f;
+      line-height: 1.8;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    /* BOTÃO */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: linear-gradient(to right, #fbbf24, #f59e0b);
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(251, 191, 36, 0.5);
+    }
+
+    .btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    /* TIMELINE */
+    .timeline-section {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+      padding: 80px 0;
+      position: relative;
+      background: 
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+        radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+        #1a1a1a;
+    }
+
+    .timeline-section.visible {
+      display: block;
+    }
+
+    .timeline-section.show {
+      opacity: 1;
+    }
+
+    /* LINHA CENTRAL */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, rgba(251, 191, 36, 0.5), transparent);
+    }
+
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ITEM DA TIMELINE */
+    .timeline-item {
+      padding: 60px 0;
+      opacity: 0.3;
+      filter: blur(3px);
+      transform: scale(0.95);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-item.active {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+    }
+
+    .timeline-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* INDICADOR */
+    .indicator {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(251, 191, 36, 0.3);
+      margin-bottom: 32px;
+      transition: all 0.5s ease;
+    }
+
+    .timeline-item.active .indicator {
+      background: #fbbf24;
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+      transform: scale(1.5);
+    }
+
+    /* POLAROID */
+    .polaroid {
+      background: #fff;
+      padding: 12px 12px 48px;
+      border-radius: 4px;
+      box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 10px 20px rgba(0, 0, 0, 0.15),
+        0 25px 50px rgba(0, 0, 0, 0.25);
+      margin-bottom: 32px;
+      transition: transform 0.3s ease;
+    }
+
+    .polaroid:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .polaroid-image {
+      width: 260px;
+      height: 260px;
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .polaroid-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .polaroid-placeholder {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .polaroid-placeholder .mini-sunflower {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 8px;
+    }
+
+    .polaroid-placeholder p {
+      color: #d97706;
+      font-size: 14px;
+    }
+
+    .polaroid-caption {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 14px;
+      font-style: italic;
+      margin-top: 12px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .timeline-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #fbbf24;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .timeline-title { font-size: 36px; }
+    }
+
+    .timeline-desc {
+      color: #d1d5db;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 500px;
+    }
+
+    /* SEÇÃO FINAL */
+    .final-section {
+      display: none;
+      position: relative;
+      background: linear-gradient(to bottom, #78350f, #ca8a04);
+      padding: 80px 20px;
+      overflow: hidden;
+    }
+
+    .final-section.visible {
+      display: block;
+    }
+
+    .final-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.1;
+    }
+
+    .final-content {
+      position: relative;
+      z-index: 10;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .big-sunflower {
+      font-size: 80px;
+      margin-bottom: 32px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .final-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .final-title { font-size: 48px; }
+    }
+
+    .final-text {
+      font-size: 18px;
+      color: #fef3c7;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .emojis {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      font-size: 36px;
+    }
+
+    .emojis span {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .emojis span:nth-child(2) { animation-delay: 0.2s; }
+    .emojis span:nth-child(3) { animation-delay: 0.4s; }
+    .emojis span:nth-child(4) { animation-delay: 0.6s; }
+    .emojis span:nth-child(5) { animation-delay: 0.8s; }
+
+    /* CORAÇÕES FLUTUANTES */
+    .floating-hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .floating-heart {
+      position: absolute;
+      font-size: 24px;
+      animation: float-up ease-in-out infinite;
+    }
+
+    @keyframes float-up {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1);
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* FOOTER */
+    footer {
+      background: #451a03;
+      padding: 32px;
+      text-align: center;
+    }
+
+    footer p {
+      color: rgba(251, 191, 36, 0.6);
+      font-size: 14px;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #fbbf24, #f59e0b);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #f59e0b, #d97706);
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro"><div id="count">1</div></div>
-
-<!-- HEADER -->
-<header>
-  <img src="file_000000005d24720eb3e4f56b88c9001d.png">
-</header>
-
-<!-- TEXTO + BOTÃO -->
-<div class="pre">
-
-  <div class="intro-text">
-    <p>
-      Eu quis fazer isso pra você…<br>
-      pra te mostrar o quanto cada momento ficou guardado em mim.<br><br>
-
-      Essa linha do tempo não é só sobre fotos…<br>
-      é sobre tudo que você fez por mim,<br>
-      e todas as vezes que esteve ao meu lado, independente de tudo 💛
-    </p>
+  <!-- INTRO COM CONTAGEM -->
+  <div id="intro">
+    <div id="count">1</div>
   </div>
 
-  <button onclick="mostrar()">Começar surpresa</button>
-
-</div>
-
-<!-- TIMELINE -->
-<div class="timeline-container" id="timeline-1">
-  <div class="timeline">
-
-    <!-- CARD 1 -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <div class="polaroid">
-          <img src="20260412_134002.jpg">
-        </div>
-        <h2 class="timeline__content-title">Antes de tudo</h2>
-        <p class="timeline__content-desc">
-          Antes de tudo… você também era só uma criança,  
-          cheia de sonhos e sem imaginar tudo que ainda viria pela frente 💛
-        </p>
-      </div>
-    </div>
-
-    <!-- CARD 2 -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <div class="polaroid">
-          <img src="20260412_133937.jpg">
-        </div>
-        <h2 class="timeline__content-title">Desde o início</h2>
-        <p class="timeline__content-desc">
-          Desde o início você cuidou de mim… mesmo sendo tão nova, assumiu uma responsabilidade enorme.  
-          Pegou um fardo que não era fácil, mas nunca deixou de estar ao meu lado.  
-          E por isso nunca foi estranho te chamar de mãe 💛
-        </p>
-      </div>
-    </div>
-
-    <!-- CARD 3 -->
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <div class="polaroid">
-          <img src="20260412_133949.jpg">
-        </div>
-        <h2 class="timeline__content-title">Por nós dois</h2>
-        <p class="timeline__content-desc">
-          Você carregava muito nas costas…  
-          cuidava de mim e do Matheus ao mesmo tempo,  
-          e ainda assim nunca deixou de nos dar todo o carinho 💛
-        </p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script>
-// CONTAGEM
-let count = 1;
-let interval = setInterval(()=>{
-  count++;
-  document.getElementById('count').innerText = count;
-  if(count > 3){
-    clearInterval(interval);
-    document.getElementById('intro').style.display="none";
-  }
-},1000);
-
-// BOTÃO
-function mostrar(){
-  let t = document.getElementById("timeline-1");
-  t.style.display="block";
-  setTimeout(()=> t.style.opacity="1",100);
-
-  window.scrollTo({
-    top: t.offsetTop,
-    behavior: "smooth"
-  });
-}
-
-// SCROLL
-$(window).scroll(function(){
-  let pos = $(this).scrollTop();
-  let h = $(window).height();
-
-  $(".timeline-item").each(function(){
-    let top = $(this).offset().top;
-
-    if(pos + h/2 >= top){
-      $(".timeline-item").removeClass("timeline-item--active");
-      $(this).addClass("timeline-item--active");
-    }
-  });
-});
-</script>
-
-</body>
-</html>
+  <!-- HEADER -->
+  <header>
+    <!-- Confetes -->
+    <div id="confetti-container"></div>
+    
+    <!-- Girassóis de fundo -->
+    <svg class="sunflower-bg" style="top: 10%; left: 5%; transform: rotate(-15deg);" viewBox="0 0 100 100">
+      <g id="sunflower-petals">
+        <ellipse cx="50" cy="20" rx="8" ry="18" fill="#FFC107" transform="rotate(0 50 50)"/>
+        <ellipse cx="50" cy="20" rx="8" ry="18" fill="#FFC107" transform="
