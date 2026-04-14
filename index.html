@@ -63,7 +63,6 @@ header img {
   background: linear-gradient(to top, rgba(0,0,0,0.4), transparent 60%);
 }
 
-/* BOTÃO MENOR */
 .pre button {
   position: absolute;
   bottom: 30px;
@@ -82,14 +81,7 @@ header img {
   border-radius: 40px;
 
   cursor: pointer;
-
-  width: 60%;
-  max-width: 200px;
-  text-align: center;
-
-  z-index: 2;
-
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 .pre button:hover {
@@ -120,6 +112,7 @@ header img {
   background: rgba(0,0,0,0.35);
 }
 
+/* LINHA */
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -138,6 +131,7 @@ header img {
   z-index: 2;
 }
 
+/* ITEM */
 .timeline-item {
   padding: 100px 0;
   opacity: 0.3;
@@ -150,6 +144,7 @@ header img {
   filter: blur(0);
 }
 
+/* POLAROID */
 .polaroid {
   background: #fff;
   padding: 6px 6px 18px;
@@ -176,6 +171,7 @@ header img {
   object-fit: cover;
 }
 
+/* TEXTO */
 .timeline__content {
   text-align: center;
   color: #fff;
@@ -190,6 +186,7 @@ header img {
   color: rgba(255,255,255,0.85);
   max-width: 500px;
   margin: auto;
+  line-height: 1.6;
 }
 
 /* OVERLAY */
@@ -211,39 +208,20 @@ header img {
   pointer-events: all;
 }
 
-.overlay-content img {
-  max-width: 90%;
-  max-height: 80vh;
+#overlay img {
+  width: auto;
+  height: auto;
+  max-width: 85%;
+  max-height: 75vh;
+  object-fit: contain;
   border: 8px solid white;
   border-bottom: 30px solid white;
+  transform: rotate(-2deg);
 }
 
-/* 🔥 FOOTER COM FADE REAL */
-.footer {
-  position: relative;
-  background: #000;
-}
-
+/* FOOTER */
 .footer img {
   width: 100%;
-  display: block;
-}
-
-.footer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,0.9) 25%,
-    rgba(0,0,0,0.5) 55%,
-    rgba(0,0,0,0) 80%
-  );
-
-  z-index: 2;
-  pointer-events: none;
 }
 </style>
 </head>
@@ -268,15 +246,16 @@ header img {
 
   <div class="timeline">
 
-    <!-- 6 CARDS (mantidos) -->
-
     <div class="timeline-item">
       <div class="timeline__content">
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="20260412_134002.jpg">
         </div>
-        <h2>Antes de tudo</h2>
-        <p>Antes de tudo... você também era só uma criança...</p>
+        <h2 class="timeline__content-title">Antes de tudo</h2>
+        <p class="timeline__content-desc">
+          Antes de tudo... você também era só uma criança,
+          cheia de sonhos e sem imaginar tudo que ainda viria pela frente.
+        </p>
       </div>
     </div>
 
@@ -285,8 +264,13 @@ header img {
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="20260412_133937.jpg">
         </div>
-        <h2>Desde o início</h2>
-        <p>Desde o início você cuidou de mim...</p>
+        <h2 class="timeline__content-title">Desde o início</h2>
+        <p class="timeline__content-desc">
+          Desde o início você cuidou de mim... mesmo sendo tão nova,
+          assumiu uma responsabilidade enorme.
+          Pegou um fardo que não era fácil,
+          mas nunca deixou de estar ao meu lado.
+        </p>
       </div>
     </div>
 
@@ -295,8 +279,12 @@ header img {
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="20260412_133949.jpg">
         </div>
-        <h2>Por nós dois</h2>
-        <p>Você cuidava de mim e do Matheus...</p>
+        <h2 class="timeline__content-title">Por nós dois</h2>
+        <p class="timeline__content-desc">
+          Você carregava muito nas costas...
+          cuidava de mim e do Matheus ao mesmo tempo,
+          e ainda assim nunca deixou faltar amor.
+        </p>
       </div>
     </div>
 
@@ -305,8 +293,11 @@ header img {
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="IMG-20240529-WA0020.jpg">
         </div>
-        <h2>Sem perceber</h2>
-        <p>Sem perceber, o tempo estava passando…</p>
+        <h2 class="timeline__content-title">Sem perceber</h2>
+        <p class="timeline__content-desc">
+          Sem perceber, o tempo foi passando...
+          e cada momento ao seu lado foi ficando guardado em mim.
+        </p>
       </div>
     </div>
 
@@ -315,8 +306,11 @@ header img {
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="IMG-20230415-WA0003.jpg">
         </div>
-        <h2>Mais um capítulo</h2>
-        <p>Mais um momento, mais uma fase…</p>
+        <h2 class="timeline__content-title">Mais um capítulo</h2>
+        <p class="timeline__content-desc">
+          Mais uma fase, mais memórias...
+          e você sempre ali, presente em tudo.
+        </p>
       </div>
     </div>
 
@@ -325,15 +319,18 @@ header img {
         <div class="polaroid" onclick="abrirImagem(this)">
           <img src="FB_IMG_1744377951544.jpg">
         </div>
-        <h2>Feliz aniversário</h2>
-        <p>Hoje é o seu dia… eu te amo. ❤️</p>
+        <h2 class="timeline__content-title">Feliz aniversário</h2>
+        <p class="timeline__content-desc">
+          Hoje é o seu dia...
+          e tudo isso é só uma pequena forma de dizer
+          o quanto você é importante pra mim. ❤️
+        </p>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="footer">
   <img src="646e1c9bf908ad7f2a694dc07ad616db.jpg">
 </footer>
