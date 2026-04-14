@@ -197,25 +197,14 @@ header img {
   border-bottom: 30px solid white;
 }
 
-/* FOOTER */
+/* FOOTER (SEM DEGRADE) */
 .footer {
   position: relative;
 }
 
 .footer img {
   width: 100%;
-}
-
-/* 🔥 DEGRADE SUAVE NO FOOTER */
-.footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
-  z-index: 2;
-  pointer-events: none;
+  display: block;
 }
 </style>
 </head>
@@ -345,7 +334,7 @@ header img {
 </div>
 
 <footer class="footer">
-  <img src="646e1c9bf908ad7f2a694dc07ad616db.jpg">
+  <img src="file_0000000092d471f5b6276bed6c3c1166.png">
 </footer>
 
 <div id="overlay" onclick="fecharImagem()">
@@ -405,4 +394,4 @@ function fecharImagem(){
 </script>
 
 </body>
-</html>
+  </html>
