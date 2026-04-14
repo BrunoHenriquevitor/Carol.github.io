@@ -144,14 +144,14 @@ header img {
   margin: auto;
   cursor: pointer;
   transition: 0.3s;
-  position: relative; /* ADICIONADO */
+  position: relative; /* 🔥 ADICIONADO */
 }
 
 .polaroid:hover {
   transform: scale(1.05);
 }
 
-/* 🔍 LUPA ADICIONADA */
+/* 🔍 LUPA */
 .polaroid::after {
   content: "🔍";
   position: absolute;
@@ -226,9 +226,168 @@ header img {
 
 <body>
 
-<!-- TODO SEU HTML ORIGINAL CONTINUA IGUAL -->
+<div id="intro">
+  <div id="count">3</div>
+</div>
 
-<!-- (não alterei absolutamente nada abaixo) -->
+<header>
+  <img src="file_000000005d24720eb3e4f56b88c9001d.png">
+</header>
+
+<div class="pre">
+  <img src="079ce57f-7b20-404e-9a97-abb6864bbdcd.png">
+  <button onclick="mostrar()">Ver nossos momentos</button>
+</div>
+
+<div class="timeline-container" id="timeline-1">
+  <div class="timeline-line"></div>
+
+  <div class="timeline">
+
+    <!-- TODOS OS 6 CARDS (mantidos) -->
+
+    <!-- 1 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <div class="polaroid" onclick="abrirImagem(this)">
+          <img src="20260412_134002.jpg">
+        </div>
+        <h2 class="timeline__content-title">Antes de tudo</h2>
+        <p class="timeline__content-desc">
+          Antes de tudo... você também era só uma criança,
+          cheia de sonhos e sem imaginar tudo que ainda viria pela frente.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <div class="polaroid" onclick="abrirImagem(this)">
+          <img src="20260412_133937.jpg">
+        </div>
+        <h2 class="timeline__content-title">Desde o início</h2>
+        <p class="timeline__content-desc">
+          Desde o início você cuidou de mim... mesmo sendo tão nova,
+          assumiu uma responsabilidade enorme...
+        </p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <div class="polaroid" onclick="abrirImagem(this)">
+          <img src="20260412_133949.jpg">
+        </div>
+        <h2 class="timeline__content-title">Por nós dois</h2>
+        <p class="timeline__content-desc">
+          Você carregava muito nas costas...
+        </p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <div class="polaroid" onclick="abrirImagem(this)">
+          <img src="IMG-20240529-WA0020.jpg">
+        </div>
+        <h2 class="timeline__content-title">Sem perceber</h2>
+        <p class="timeline__content-desc">
+          Sem perceber, o tempo estava passando…
+        </p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <div class="polaroid" onclick="abrirImagem(this)">
+          <img src="IMG-20230415-WA0003.jpg">
+        </div>
+        <h2 class="timeline__content-title">Mais um capítulo</h2>
+        <p class="timeline__content-desc">
+          Mais um momento, mais uma fase…
+        </p>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="timeline-item">
+      <div class="timeline__content">
+        <div class="polaroid" onclick="abrirImagem(this)">
+          <img src="FB_IMG_1744377951544.jpg">
+        </div>
+        <h2 class="timeline__content-title">Feliz aniversário</h2>
+        <p class="timeline__content-desc">
+          Hoje é o seu dia… eu te amo ❤️
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <img src="file_0000000092d471f5b6276bed6c3c1166.png">
+</footer>
+
+<div id="overlay" onclick="fecharImagem()">
+  <img id="overlay-img">
+</div>
+
+<script>
+let count = 3;
+let interval = setInterval(()=>{
+  count--;
+  document.getElementById('count').innerText = count > 0 ? count : "";
+  if(count <= 0){
+    clearInterval(interval);
+    document.getElementById('intro').style.display="none";
+  }
+},1000);
+
+function mostrar(){
+  let t = document.getElementById("timeline-1");
+  t.style.display="block";
+  setTimeout(()=> t.style.opacity="1",100);
+
+  window.scrollTo({
+    top: t.offsetTop,
+    behavior: "smooth"
+  });
+}
+
+$(window).scroll(function(){
+  let pos = $(this).scrollTop();
+  let h = $(window).height();
+
+  $(".timeline-item").each(function(){
+    let top = $(this).offset().top;
+
+    if(pos + h/2 >= top){
+      $(".timeline-item").removeClass("timeline-item--active");
+      $(this).addClass("timeline-item--active");
+
+      let img = $(this).find("img").attr("src");
+      $(".timeline-container").css("background-image",
+        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${img})`
+      );
+    }
+  });
+});
+
+function abrirImagem(el){
+  let src = el.querySelector("img").src;
+  document.getElementById("overlay-img").src = src;
+  document.getElementById("overlay").classList.add("show");
+}
+
+function fecharImagem(){
+  document.getElementById("overlay").classList.remove("show");
+}
+</script>
 
 </body>
 </html>
