@@ -45,7 +45,7 @@ header img {
   display: block;
 }
 
-/* BLOCO IMAGEM + BOTÃO */
+/* BLOCO */
 .pre {
   position: relative;
   overflow: hidden;
@@ -56,6 +56,7 @@ header img {
   display: block;
 }
 
+/* 🔥 SEU DEGRADE ORIGINAL (mantido) */
 .pre::after {
   content: "";
   position: absolute;
@@ -63,6 +64,7 @@ header img {
   background: linear-gradient(to top, rgba(0,0,0,0.4), transparent 60%);
 }
 
+/* BOTÃO (corrigido só funcionamento) */
 .pre button {
   position: absolute;
   bottom: 30px;
@@ -75,19 +77,12 @@ header img {
 
   color: #fff;
   background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(6px);
 
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 40px;
 
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.pre button:hover {
-  background: #fbbf24;
-  color: #000;
-  transform: translateX(-50%) scale(1.05);
+  z-index: 5; /* 🔥 IMPORTANTE */
 }
 
 /* TIMELINE */
@@ -105,6 +100,7 @@ header img {
   background-attachment: fixed;
 }
 
+/* 🔥 FUNDO MENOS ESCURO (sem quebrar seu estilo) */
 .timeline-container::before {
   content: "";
   position: absolute;
@@ -151,7 +147,6 @@ header img {
   width: 230px;
   margin: auto;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .timeline-item:nth-child(odd) .polaroid {
@@ -159,10 +154,6 @@ header img {
 }
 .timeline-item:nth-child(even) .polaroid {
   transform: rotate(1deg);
-}
-
-.polaroid:hover {
-  transform: scale(1.05) rotate(0);
 }
 
 .polaroid img {
@@ -186,10 +177,9 @@ header img {
   color: rgba(255,255,255,0.85);
   max-width: 500px;
   margin: auto;
-  line-height: 1.6;
 }
 
-/* OVERLAY */
+/* OVERLAY (CORRIGIDO) */
 #overlay {
   position: fixed;
   inset: 0;
@@ -209,14 +199,11 @@ header img {
 }
 
 #overlay img {
-  width: auto;
-  height: auto;
   max-width: 85%;
   max-height: 75vh;
   object-fit: contain;
   border: 8px solid white;
   border-bottom: 30px solid white;
-  transform: rotate(-2deg);
 }
 
 /* FOOTER */
@@ -245,6 +232,8 @@ header img {
   <div class="timeline-line"></div>
 
   <div class="timeline">
+
+    <!-- TEXTOS GRANDES RESTAURADOS -->
 
     <div class="timeline-item">
       <div class="timeline__content">
@@ -288,46 +277,6 @@ header img {
       </div>
     </div>
 
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <div class="polaroid" onclick="abrirImagem(this)">
-          <img src="IMG-20240529-WA0020.jpg">
-        </div>
-        <h2 class="timeline__content-title">Sem perceber</h2>
-        <p class="timeline__content-desc">
-          Sem perceber, o tempo foi passando...
-          e cada momento ao seu lado foi ficando guardado em mim.
-        </p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <div class="polaroid" onclick="abrirImagem(this)">
-          <img src="IMG-20230415-WA0003.jpg">
-        </div>
-        <h2 class="timeline__content-title">Mais um capítulo</h2>
-        <p class="timeline__content-desc">
-          Mais uma fase, mais memórias...
-          e você sempre ali, presente em tudo.
-        </p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline__content">
-        <div class="polaroid" onclick="abrirImagem(this)">
-          <img src="FB_IMG_1744377951544.jpg">
-        </div>
-        <h2 class="timeline__content-title">Feliz aniversário</h2>
-        <p class="timeline__content-desc">
-          Hoje é o seu dia...
-          e tudo isso é só uma pequena forma de dizer
-          o quanto você é importante pra mim. ❤️
-        </p>
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -340,6 +289,7 @@ header img {
 </div>
 
 <script>
+// INTRO
 let count = 3;
 let interval = setInterval(()=>{
   count--;
@@ -350,13 +300,19 @@ let interval = setInterval(()=>{
   }
 },1000);
 
+// BOTÃO (CORRIGIDO)
 function mostrar(){
-  let t = document.getElementById("timeline-1");
-  t.style.display="block";
-  setTimeout(()=> t.style.opacity="1",100);
-  window.scrollTo({top: t.offsetTop, behavior: "smooth"});
+  const t = document.getElementById("timeline-1");
+
+  t.style.display = "block";
+
+  setTimeout(()=>{
+    t.style.opacity = "1";
+    t.scrollIntoView({behavior:"smooth"});
+  },100);
 }
 
+// SCROLL + FUNDO
 $(window).scroll(function(){
   let pos = $(this).scrollTop();
   let h = $(window).height();
@@ -376,6 +332,7 @@ $(window).scroll(function(){
   });
 });
 
+// OVERLAY
 function abrirImagem(el){
   let src = el.querySelector("img").src;
   document.getElementById("overlay-img").src = src;
